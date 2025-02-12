@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'light';
+  src: url() format();
+}
+@font-face {
+  font-family: 'default';
+  src: url() format();
+}
+@font-face {
+  font-family: 'bold';
+  src: url() format();
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App de tareas</title>
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body></body>
+</html>
+
+<dialog class="project-view">
+  <button class="project-view__close">
+    <img class="project-view__image" src="" alt="" title="Close project view" />
+  </button>
+  <section class="project-view__project-data">
+    <!-- NOTE Emoji picker -->
+    <div class="project-view__group--main-data">
+      <input class="project-view__name" type="text" />
+      <textarea class="project-view__description"></textarea>
+    </div>
+  </section>
+  <section class="project-view__task-management">
+    <!-- aqui estoy y debo llegar a task-container -->
+    <!-- NOTE Componente de sorting -->
+    <!-- NOTE Componente de filtrado -->
+    <details class="project-view__form-details">
+      <summary class="project-view__form-summary">Add a task</summary>
+      <div class="project-view__task-form-container">
+        <!-- NOTE Componente formulario para tarea pero quitarle project select -->
+      </div>
+    </details>
+  </section>
+  <section class="project-view__tasks">
+    <div class="project-view__task-container task-container">
+      <!-- NOTE agregar una imagen para cuando esta vacio -->
+      <!-- NOTE se colocan las task card -->
+    </div>
+  </section>
+</dialog>

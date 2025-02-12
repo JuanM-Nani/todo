@@ -1,0 +1,22 @@
+.nav-sidebar {
+  background-color: var(--dark);
+  width: 20vw;
+  height: 100vh;
+  padding: 2rem;
+}
+.nav-list__button {
+  padding: 0.4rem 1rem;
+  width: 100%;
+}
+/* NOTE add styles to current nav */
+.nav-list__button--current {
+  background-color: red;
+}
+.nav-list__span {
+  display: flex;
+  align-items: center;
+}
+.nav-list__image {
+  width: 20%;
+  aspect-ratio: 1;
+}

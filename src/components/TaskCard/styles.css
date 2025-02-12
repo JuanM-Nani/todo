@@ -1,0 +1,19 @@
+.task-card {
+  border: 2px solid;
+  padding: 40px;
+  position: relative;
+}
+.task-card {
+  background-color: rgb(143, 131, 153);
+}
+.task-card button {
+  padding: 4px 10px;
+  background-color: rgb(69, 114, 156);
+}
+.task-card--completed {
+  background-color: rgb(116, 204, 34);
+  opacity: 50%;
+}
+.task-card--expired {
+  background-color: red;
+}
