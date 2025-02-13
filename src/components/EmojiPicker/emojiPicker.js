@@ -2,13 +2,15 @@ import './styles.css';
 import { EmojiButton } from '@joeattardi/emoji-button';
 
 const emojiPickerTmpl = `
-<button class="project-form__emoji-picker">📋</button>
+<button id="emoji-picker">📋</button>
 `;
 
-export class EmojiPicker {
-  HTMLContent = emojiPickerTmpl;
-  selection = '📋';
-  emojiButtonInstance = null;
+class EmojiPicker {
+  constructor(triggerButton) {
+    this.triggerButton = triggerButton;
+    this.selection = '📋';
+    this.emojiButtonInstance = null;
+  }
 
   init() {
     this.emojiButtonInstance = new EmojiButton({
@@ -18,22 +20,23 @@ export class EmojiPicker {
       backgroundColor: '#ffffff',
       showVariants: false,
       emojiButtonClass: 'emoji-btn',
-      // Clase personalizada para el botón del selector de emoji {default => 'emoji-btn'}
       closeButtonClass: 'emoji-btn-close',
+      // Clase personalizada para el botón del selector de emoji {default => 'emoji-btn'}
       // Clase personalizada para el botón de cerrar {default => 'emoji-btn-close'}
     });
+  }
 
-    const triggerButton = document.querySelector('.project-form__emoji-picker');
-    triggerButton.addEventListener('click', event => {
+  addListeners() {
+    this.triggerButton.addEventListener('click', event => {
       event.preventDefault();
-      this.emojiButtonInstance.togglePicker(this.emojiPicker);
+      this.emojiButtonInstance.togglePicker();
     });
 
     this.emojiButtonInstance.on('emoji', selection => {
-      triggerButton.innerHTML = selection.emoji;
+      this.triggerButton.innerHTML = selection.emoji;
       this.selection = selection.emoji;
     });
   }
 }
 
-export { emojiPickerTmpl };
+export { emojiPickerTmpl, EmojiPicker };

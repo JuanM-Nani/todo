@@ -9,8 +9,8 @@ const projectCardTmpl = `
 export class ProjectCard {
   constructor(project) {
     this.project = project;
+    this.card = null;
   }
-  card = null;
 
   init() {
     const $ProjectContainer = document.querySelector('.project-container');
