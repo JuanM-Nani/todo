@@ -10,7 +10,6 @@ export class ProjectCard {
   constructor(project) {
     this.project = project;
     this.card = null;
-    this.emojiPicker = null;
   }
 
   init() {

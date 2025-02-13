@@ -1,20 +1,14 @@
-import { EmojiPicker } from '../components/EmojiPicker/emojiPicker.js';
-import { Listener } from '../utils/Listener.js';
-import { addListeners } from '../utils/addListener.js';
-import { Project } from '../logic/Project.js';
+import { emojiPickerTmpl, EmojiPicker } from '../components/EmojiPicker/emojiPicker.js';
 import { ProjectStorage } from '../logic/ProjectStorage.js';
-import { ProjectCard } from '../components/ProjectCard/projectCard.js';
-import { ProjectCardHandler } from '../components/ProjectCard/projectCard_handler.js';
-import { TaskStorage } from '../logic/TaskStorage.js';
-
-const emojiPicker = new EmojiPicker();
+import { createProjectCard } from '../utils/createProjectCard.js';
+import { ProjectFormHandler } from '../components/ProjectForm/projectForm_handler.js';
 
 const projectSectionHTML = `
 <section class="projects">
   <header class="projects__header">
     <form class="project-form">
       <label class="label" for="emoji-picker">
-        Pick a emoji ${emojiPicker.HTMLContent}
+        Pick a emoji ${emojiPickerTmpl}
       </label>
       <label class="label" for="name">
         Project name
@@ -32,9 +26,11 @@ const projectSectionHTML = `
 `;
 
 function initProjectSection() {
-  emojiPicker.init();
+  const form = document.querySelector('.project-form');
+  const formHandler = new ProjectFormHandler(form);
+  formHandler.init();
+  formHandler.addListeners();
   initProjectCards();
-  addListeners(submitProject);
 }
 
 function initProjectCards() {
@@ -42,38 +38,6 @@ function initProjectCards() {
   projects.forEach(p => {
     createProjectCard(p);
   });
-}
-
-const submitProject = new Listener('.project-form__submit', 'click', event => {
-  const $Form = document.querySelector('.project-form');
-
-  if ($Form.checkValidity()) {
-    event.preventDefault();
-    createProject($Form);
-    $Form.reset();
-
-    const $PickerTrigger = document.querySelector('.project-form__emoji-picker');
-    $PickerTrigger.innerHTML = '📋';
-    emojiPicker.selection = '📋';
-  }
-});
-
-function createProject(form) {
-  const emoji = emojiPicker.selection;
-  const name = form.querySelector('.project-form__name').value;
-  const description = form.querySelector('.project-form__description').value;
-
-  const project = new Project(emoji, name, description);
-  ProjectStorage.addProject(project);
-
-  createProjectCard(project);
-}
-
-function createProjectCard(project) {
-  const card = new ProjectCard(project);
-  card.init();
-  card.initContent();
-  const projectCardHandler = new ProjectCardHandler(project, card);
 }
 
 export { projectSectionHTML, initProjectSection };
