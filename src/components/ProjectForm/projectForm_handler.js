@@ -24,18 +24,21 @@ export class ProjectFormHandler {
     return [emoji, name, description];
   }
 
-  addListeners() {
-    const submitProject = this.form.querySelector('.project-form__submit');
-    submitProject.addEventListener('click', event => {
+  addListeners(closeProjectView) {
+    const submitForm =
+      closeProjectView || this.form.querySelector('.project-form__submit');
+
+    submitForm.addEventListener('click', event => {
       if (this.form.checkValidity()) {
         event.preventDefault();
 
         const values = this.getValues();
-        createProject(values);
-
-        this.form.reset();
-        this.emojiPicker.selection = '📋';
-        this.emojiPicker.triggerButton.innerHTML = '📋';
+        if (!closeProjectView) {
+          createProject(values);
+          this.form.reset();
+          this.emojiPicker.selection = '📋';
+          this.emojiPicker.triggerButton.innerHTML = '📋';
+        }
       }
     });
   }

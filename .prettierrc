@@ -3,5 +3,6 @@
   "singleQuote": true,
   "htmlWhitespaceSensitivity": "ignore",
   "javascriptWhitespaceSensitivity": "ignore",
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "bracketSpacing": true
 }

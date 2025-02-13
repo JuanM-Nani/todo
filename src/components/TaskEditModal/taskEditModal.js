@@ -118,9 +118,4 @@ function replaceWithEditedCard(currentCard, editedTask) {
   return editedCard;
 }
 
-function addTaskToProject(projectID, taskID) {
-  const project = ProjectStorage.getProject(projectID);
-  project.addTask(taskID);
-}
-
 export { TaskEditModalHandler, taskEditModalTmpl };

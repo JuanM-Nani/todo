@@ -24,6 +24,11 @@ textarea {
   resize: none;
 }
 select {
+  cursor: pointer;
 }
 option {
+  cursor: pointer;
+}
+summary {
+  cursor: pointer;
 }

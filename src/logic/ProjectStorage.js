@@ -5,8 +5,8 @@ export class ProjectStorage {
     this.#projectStorage.push(project);
   }
 
-  static removeProject(name) {
-    const i = this.#projectStorage.findIndex(p => p.name === name);
+  static removeProject(projectID) {
+    const i = this.#projectStorage.findIndex(p => p.projectID === projectID);
     this.#projectStorage.splice(i, 1);
   }
 

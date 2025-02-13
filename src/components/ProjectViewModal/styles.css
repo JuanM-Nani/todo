@@ -1,0 +1,8 @@
+.project-view {
+  padding: 20px;
+  position: absolute;
+  inset: 0;
+  top: 20%;
+  left: 40%;
+  background-color: bisque;
+}
