@@ -50,4 +50,6 @@ export const taskSortingTmpl = `
   Search task by name:
   <input class="task-search-bar" type="text" />
 </label>
+<button class="delete-task--completed">Delete completed</button>
+<button class="delete-task--expired">Delete Expired</button>
 `;

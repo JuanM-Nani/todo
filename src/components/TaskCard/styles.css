@@ -9,6 +9,7 @@
 .task-card button {
   padding: 4px 10px;
   background-color: rgb(69, 114, 156);
+  z-index: 10;
 }
 .task-card--completed {
   background-color: rgb(116, 204, 34);
@@ -16,4 +17,10 @@
 }
 .task-card--expired {
   background-color: red;
+}
+.task-card img {
+  width: 20px;
+  aspect-ratio: 1;
+  z-index: -1;
+  pointer-events: none;
 }

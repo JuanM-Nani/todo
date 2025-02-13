@@ -28,7 +28,7 @@ export class TaskCard {
     if (isExpired(this.task)) {
       setTaskExpired($Card, this.task);
     } else if (this.task.isCompleted) {
-      this.$TaskCard.classList.add('task-card--completed');
+      $Card.classList.add('task-card--completed');
     }
 
     this.$TaskCard = $Card;
@@ -49,7 +49,7 @@ export class TaskCard {
 
   initMetaData() {
     if (this.task.forProject) {
-      const project = ProjectStorage.getProject(this.task.forProject);
+      const project = ProjectStorage.getProjectByID(this.task.forProject);
       const projectName = project.name;
       addMetaData('project', projectName, this.$TaskCard);
     }

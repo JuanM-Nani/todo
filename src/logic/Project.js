@@ -2,6 +2,11 @@ class ProjectManager {
   addTask(taskID) {
     this.taskStorage.push(taskID);
   }
+
+  removeTask(taskID) {
+    const index = this.taskStorage.findIndex(ID => ID === taskID);
+    this.taskStorage.splice(index, 1);
+  }
 }
 
 export class Project extends ProjectManager {

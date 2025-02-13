@@ -9,7 +9,7 @@ export class TaskStorage {
     this.#taskStorage.delete(taskID);
   }
 
-  static getProjectTask(projectID) {
+  static getProjectByIDTask(projectID) {
     const projectTasks = [];
     this.#taskStorage.forEach(t => {
       if (t.projectID === projectID) projectTasks.push(t);

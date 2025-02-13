@@ -7,13 +7,12 @@ import { Task } from '../../logic/Task.js';
 import { TaskStorage } from '../../logic/TaskStorage.js';
 import { ProjectStorage } from '../../logic/ProjectStorage.js';
 
-const projectSelect = new ProjectSelect();
-const projectSelectHTML = projectSelect.HTMLContent;
-
-class TaskFormHandler {
+export class TaskFormHandler {
   constructor(form) {
     this.form = form;
     this.datePicker = null;
+    this.projectSelect = null;
+    // Esto sera una instancia
   }
 
   getValues() {
@@ -36,7 +35,9 @@ class TaskFormHandler {
     this.datePicker = new DatePickerHandler(datePickerInput);
     this.datePicker.init(datePickerInput);
     this.datePicker.setMinDate(new Date());
-    projectSelect.init();
+
+    this.projectSelect = new ProjectSelect(this.form);
+    this.projectSelect.init();
 
     const emojiPickerDiv = document.querySelector('.emoji-picker__wrapper');
     if (emojiPickerDiv) emojiPickerDiv.remove();
@@ -64,8 +65,6 @@ function createTask(values) {
 }
 
 function addTaskToProject(projectID, taskID) {
-  const project = ProjectStorage.getProject(projectID);
+  const project = ProjectStorage.getProjectByID(projectID);
   project.addTask(taskID);
 }
-
-export { projectSelectHTML, TaskFormHandler };

@@ -4,7 +4,5 @@ export class ProjectCardHandler {
     this.card = card;
   }
 
-  addListeners(){
-    
-  }
+  addListeners() {}
 }
