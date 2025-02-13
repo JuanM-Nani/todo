@@ -64,7 +64,7 @@ function createTask(values) {
 }
 
 function addTaskToProject(projectID, taskID) {
-  const project = ProjectStorage.getProject(projectID);
+  const project = ProjectStorage.getProjectByID(projectID);
   project.addTask(taskID);
 }
 

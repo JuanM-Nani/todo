@@ -49,7 +49,7 @@ export class TaskCard {
 
   initMetaData() {
     if (this.task.forProject) {
-      const project = ProjectStorage.getProject(this.task.forProject);
+      const project = ProjectStorage.getProjectByID(this.task.forProject);
       const projectName = project.name;
       addMetaData('project', projectName, this.$TaskCard);
     }

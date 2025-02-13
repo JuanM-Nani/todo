@@ -10,7 +10,8 @@ import {
   isAfter,
   isThisYear,
   endOfYear,
-  format,
+  parse,
+  isBefore,
 } from 'date-fns';
 
 export class TaskSorter {
@@ -133,8 +134,10 @@ export class TaskSorter {
   filterByDueDate = {
     today: () => {
       return this.storage.filter(task => {
-        const formatted = format(task.dueDate, 'dd/MM/yyyy HH:mm');
-        return isToday(formatted);
+        if (task.dueDate) {
+          const parsedDate = parse(task.dueDate, 'dd/MM/yyyy HH:mm', new Date());
+          return isToday(parsedDate) && isBefore(new Date(), parsedDate);
+        }
       });
     },
     tomorrow: () => {
@@ -142,11 +145,16 @@ export class TaskSorter {
       const tomorrowEnd = endOfDay(addDays(new Date(), 1));
 
       return this.storage.filter(task => {
-        const formatted = format(task.dueDate, 'dd/MM/yyyy HH:mm');
-        return isWithinInterval(formatted, {
-          start: tomorrowStart,
-          end: tomorrowEnd,
-        });
+        if (task.dueDate) {
+          const parsedDate = parse(task.dueDate, 'dd/MM/yyyy HH:mm', new Date());
+
+          return (
+            isWithinInterval(parsedDate, {
+              start: tomorrowStart,
+              end: tomorrowEnd,
+            }) && isBefore(new Date(), parsedDate)
+          );
+        }
       });
     },
     nextSeven: () => {
@@ -155,17 +163,23 @@ export class TaskSorter {
       const nextSevenDays = startOfDay(inSevenDays);
 
       return this.storage.filter(task => {
-        const formatted = format(task.dueDate, 'dd/MM/yyyy HH:mm');
-        return isWithinInterval(formatted, {
-          start: startOfToday,
-          end: nextSevenDays,
-        });
+        if (task.dueDate) {
+          const parsedDate = parse(task.dueDate, 'dd/MM/yyyy HH:mm', new Date());
+          return (
+            isWithinInterval(parsedDate, {
+              start: startOfToday,
+              end: nextSevenDays,
+            }) && isBefore(new Date(), parsedDate)
+          );
+        }
       });
     },
     thisMonth: () => {
       return this.storage.filter(task => {
-        const formatted = format(task.dueDate, 'dd/MM/yyyy HH:mm');
-        return isThisMonth(formatted);
+        if (task.dueDate) {
+          const parsedDate = parse(task.dueDate, 'dd/MM/yyyy HH:mm', new Date());
+          return isThisMonth(parsedDate) && isBefore(new Date(), parsedDate);
+        }
       });
     },
     nextThirty: () => {
@@ -174,34 +188,42 @@ export class TaskSorter {
       const nextThirtyDays = startOfDay(inThirtyDays);
 
       return this.storage.filter(task => {
-        const formatted = format(task.dueDate, 'dd/MM/yyyy HH:mm');
-        return isWithinInterval(formatted, {
-          start: startOfToday,
-          end: nextThirtyDays,
-        });
+        if (task.dueDate) {
+          const parsedDate = parse(task.dueDate, 'dd/MM/yyyy HH:mm', new Date());
+          return (
+            isWithinInterval(parsedDate, {
+              start: startOfToday,
+              end: nextThirtyDays,
+            }) && isBefore(new Date(), parsedDate)
+          );
+        }
       });
     },
     thisYear: () => {
       return this.storage.filter(task => {
-        const formatted = format(task.dueDate, 'dd/MM/yyyy HH:mm');
-        return isThisYear(formatted);
+        const parsedDate = parse(task.dueDate, 'dd/MM/yyyy HH:mm', new Date());
+        return isThisYear(parsedDate) && isBefore(new Date(), parsedDate);
       });
     },
     someday: () => {
       const endOfTheYear = endOfYear(new Date());
 
       return this.storage.filter(task => {
-        const formatted = format(task.dueDate, 'dd/MM/yyyy HH:mm');
-        return isAfter(formatted, endOfTheYear);
+        if (task.dueDate) {
+          const parsedDate = parse(task.dueDate, 'dd/MM/yyyy HH:mm', new Date());
+          return isAfter(parsedDate, endOfTheYear) && isBefore(new Date(), parsedDate);
+        }
       });
     },
     noDueDate: () => {
-      return this.storage.filter(task => task.dueDate === 'No due date');
+      return this.storage.filter(task => !task.dueDate);
     },
     expired: () => {
       return this.storage.filter(task => {
-        const formatted = format(task.dueDate, 'dd/MM/yyyy HH:mm');
-        return isAfter(new Date(), formatted);
+        if (task.dueDate) {
+          const parsedDate = parse(task.dueDate, 'dd/MM/yyyy HH:mm', new Date());
+          return isAfter(new Date(), parsedDate);
+        }
       });
     },
   };

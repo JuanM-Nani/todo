@@ -88,14 +88,12 @@ class TaskEditModalHandler {
         modal.close();
         destroyDatePicker();
 
-        const currentForProject = this.task.forProject;
-        if (currentForProject) {
-          console.log(currentForProject);
-        }
-
-        // const newForProject = formValues[formValues.length - 1];
-
         const formValues = this.formHandler.getValues();
+        // swap task between projects
+        const currentForProject = this.task.forProject;
+        const newForProject = formValues[formValues.length - 1];
+        verifyProjectChange(currentForProject, newForProject, this.task);
+
         const taskKeys = ['title', 'description', 'priority', 'dueDate', 'forProject'];
         formValues.forEach((value, index) => this.task.edit(taskKeys[index], value));
 
@@ -116,6 +114,16 @@ function replaceWithEditedCard(currentCard, editedTask) {
   taskCardHandler.addListeners();
 
   return editedCard;
+}
+
+function verifyProjectChange(currentForProject, newForProject, task) {
+  if (currentForProject !== newForProject) {
+    const currentProject = ProjectStorage.getProjectByID(currentForProject);
+    const newProject = ProjectStorage.getProjectByID(newForProject);
+
+    if (currentForProject) currentProject.removeTask(task.taskID);
+    if (newProject) newProject.addTask(task.taskID);
+  }
 }
 
 export { TaskEditModalHandler, taskEditModalTmpl };

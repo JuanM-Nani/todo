@@ -10,7 +10,7 @@ export class ProjectStorage {
     this.#projectStorage.splice(i, 1);
   }
 
-  static getProject(projectID) {
+  static getProjectByID(projectID) {
     return this.#projectStorage.find(p => p.projectID === projectID);
   }
 

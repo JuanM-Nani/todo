@@ -7,6 +7,7 @@ export class TaskSorterGroup {
   constructor() {
     this.sorterGroup = null;
     this.taskSorter = null;
+    this.taskContainer = null;
   }
 
   init(project) {
@@ -25,12 +26,21 @@ export class TaskSorterGroup {
 
     this.sorterGroup = group;
     this.taskSorter = taskSorter;
+
+    const section = this.sorterGroup.parentElement;
+    if (section) {
+      this.taskContainer = section.nextElementSibling.querySelector('.task-container');
+    } else {
+      this.taskContainer = document.querySelector('.task-container');
+    }
   }
 
   addListeners() {
     const sortSelect = this.sorterGroup.querySelector('.task-sort');
     const filterSelect = this.sorterGroup.querySelector('.task-filter');
     const searchBar = this.sorterGroup.querySelector('.task-search-bar');
+    const deleteCompleted = this.sorterGroup.querySelector('.delete-task--completed');
+    const deleteExpired = this.sorterGroup.querySelector('.delete-task--expired');
 
     // SECTION - sort select
     sortSelect.addEventListener('change', () => {
@@ -47,7 +57,7 @@ export class TaskSorterGroup {
       const filteredStorage = this.taskSorter.filter(filterMethod, filterCondition);
 
       const sorted = this.taskSorter.sort(sortMethod, sortCondition, filteredStorage);
-      sortResultHasTasks(sorted, section);
+      sortResultHasTasks(sorted, this.taskContainer);
     });
 
     // SECTION - filter select
@@ -66,28 +76,42 @@ export class TaskSorterGroup {
       const sortCondition = this.taskSorter._currentSortCondition;
       const sorted = this.taskSorter.sort(sortMethod, sortCondition, filteredStorage);
 
-      const section = this.sorterGroup.parentElement;
-      sortResultHasTasks(sorted, section);
+      sortResultHasTasks(sorted, this.taskContainer);
     });
 
+    // SECTION search bar
     searchBar.addEventListener('input', () => {
       const foundedTask = this.taskSorter.search(searchBar.value);
-      const section = this.sorterGroup.parentElement;
-      sortResultHasTasks(foundedTask, section);
+      sortResultHasTasks(foundedTask, this.taskContainer);
+    });
+
+    // SECTION delete
+    deleteCompleted.addEventListener('click', () => {
+      removeUnnecesaryTasks('.task-card--completed', this.taskContainer);
+    });
+
+    deleteExpired.addEventListener('click', () => {
+      removeUnnecesaryTasks('.task-card--expired', this.taskContainer);
     });
   }
 }
 
-function sortResultHasTasks(sortResults, section) {
-  const taskContainer =
-    section.nextElementSibling.querySelector('.task-container') ||
-    document.querySelector('.task-container');
+function removeUnnecesaryTasks(selector, taskContainer) {
+  const unnecesaryTasks = taskContainer.querySelectorAll(selector);
+  if (unnecesaryTasks.length) {
+    unnecesaryTasks.forEach(tc => {
+      const taskID = tc.getAttribute('data-taskID');
+      TaskStorage.removeTask(taskID);
+      tc.remove();
+    });
+  }
+}
 
+function sortResultHasTasks(sortResults, taskContainer) {
   if (sortResults.length) {
     initTaskCards(sortResults, taskContainer);
   } else {
     // TODO imagen de no resultados
     taskContainer.replaceChildren();
-    console.log('agregar imagen');
   }
 }
