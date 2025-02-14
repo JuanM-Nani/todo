@@ -17,7 +17,8 @@
 .task-card--expired {
   background-color: red;
 }
-.task-card__img {
+.task-card img {
   width: 20px;
   aspect-ratio: 1;
+  pointer-events: none;
 }

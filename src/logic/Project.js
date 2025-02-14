@@ -7,6 +7,10 @@ class ProjectManager {
     const index = this.taskStorage.findIndex(t => t.taskID === taskID);
     this.taskStorage.splice(index, 1);
   }
+
+  edit(key, newValue) {
+    this[key] = newValue;
+  }
 }
 
 export class Project extends ProjectManager {

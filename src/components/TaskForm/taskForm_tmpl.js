@@ -1,4 +1,3 @@
-// de aqui hay que importar el radio, el select, y el datePicker
 import { PriorityRadio } from '../PriorityRadio/priorityRadio_tmpl.js';
 import { projectSelectHTML } from './taskForm_handler.js';
 import { datePickerTmpl } from '../DatePicker/datePicker_handler.js';

@@ -1,6 +1,25 @@
 import { TaskStorage } from '../../logic/TaskStorage.js';
 import { TaskEditModalHandler } from '../TaskEditModal/taskEditModal.js';
 
+
+
+export class TaskCardHandler {
+  constructor(taskCard) {
+    this.taskCard = taskCard;
+  }
+
+  addListeners() {
+    taskCardOptions.forEach(option => {
+      this.taskCard.$TaskCard.addEventListener('click', event => {
+        const target = event.target;
+        if (target.classList.contains(option.elementClass)) {
+          option.callback(this.taskCard.task, this.taskCard.$TaskCard);
+        }
+      });
+    });
+  }
+}
+
 const taskCardOptions = [
   {
     elementClass: 'task-card__option--mark-complete',
@@ -27,22 +46,3 @@ const taskCardOptions = [
     },
   },
 ];
-
-class TaskCardHandler {
-  constructor(taskCard) {
-    this.taskCard = taskCard;
-  }
-
-  addListeners() {
-    taskCardOptions.forEach(option => {
-      this.taskCard.$TaskCard.addEventListener('click', event => {
-        const target = event.target;
-        if (target.classList.contains(option.elementClass)) {
-          option.callback(this.taskCard.task, this.taskCard.$TaskCard);
-        }
-      });
-    });
-  }
-}
-
-export { TaskCardHandler };

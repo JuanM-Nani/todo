@@ -12,11 +12,10 @@ const priorityColors = {
 };
 
 export class TaskCard {
-  HTMLContent = TaskCardTmpl;
-  $TaskCard = null;
-
   constructor(task) {
     this.task = task;
+    this.HTMLContent = TaskCardTmpl;
+    this.$TaskCard = null;
   }
 
   initTaskCard() {
@@ -54,16 +53,10 @@ export class TaskCard {
       addMetaData('project', projectName, this.$TaskCard);
     }
 
-    // REVIEW terminar
-    // NOTE TERMINAR
-    if (this.task.subtasks.length) {
-      // const subtasks = this.task.subtask.length;
+    // TODO terminar
+    /* if (this.task.subtasks.length) {
       let subtasks = 3;
       addMetaData('subtask', subtasks);
-      // REVIEW terminar
-      // NOTE TERMINAR
-    }
-    // REVIEW terminar
-    // NOTE TERMINAR
+    } */
   }
 }

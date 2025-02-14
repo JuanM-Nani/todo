@@ -2,6 +2,7 @@ import { TaskCard } from '../components/TaskCard/TaskCard.js';
 import { TaskCardHandler } from '../components/TaskCard/taskCard_handler.js';
 import { TaskStorage } from '../logic/TaskStorage.js';
 import { TaskSorterGroup } from '../components/TaskSorting/TaskSorting.js';
+import { TaskSorter } from '../logic/TaskSorter.js';
 
 const taskListSectionHTML = `
 <section class="task-list">
@@ -11,9 +12,13 @@ const taskListSectionHTML = `
 </section>
 `;
 
-const taskSorterGroup = new TaskSorterGroup();
 function initTaskListSection() {
+  const taskContainer = document.querySelector('.task-container');
+  const tasks = TaskStorage.show();
+  const taskStorage = Array.from(tasks.values());
+  const taskSorterGroup = new TaskSorterGroup(taskContainer, new TaskSorter(taskStorage));
   taskSorterGroup.init();
+
   const header = document.querySelector('.task-list__sorting');
   header.appendChild(taskSorterGroup.sorterGroup);
   taskSorterGroup.addListeners();

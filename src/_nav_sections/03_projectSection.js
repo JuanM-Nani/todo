@@ -1,7 +1,7 @@
 import { ProjectStorage } from '../logic/ProjectStorage.js';
-import { createProjectCard } from '../utils/createProjectCard.js';
 import { ProjectFormHandler } from '../components/ProjectForm/projectForm_handler.js';
 import { projectFormTmpl } from '../components/ProjectForm/projectForm_tmpl.js';
+import { ProjectCard } from '../components/ProjectCard/projectCard.js';
 
 const projectSectionHTML = `
 <section class="projects">
@@ -22,8 +22,13 @@ function initProjectSection() {
 
 function initProjectCards() {
   const projects = ProjectStorage.show();
+  const $ProjectContainer = document.querySelector('.project-container');
   projects.forEach(p => {
-    createProjectCard(p);
+    const projecCard = new ProjectCard(p);
+    const card = projecCard.init();
+    $ProjectContainer.appendChild(card);
+    projecCard.initContent();
+    projecCard.addListeners();
   });
 }
 

@@ -16,6 +16,18 @@ class TaskFormHandler {
     this.datePicker = null;
   }
 
+  init() {
+    destroyDatePicker();
+    const datePickerInput = this.form.querySelector('#date-picker');
+    this.datePicker = new DatePickerHandler(datePickerInput);
+    this.datePicker.init(datePickerInput);
+    this.datePicker.setMinDate(new Date());
+    projectSelect.init();
+
+    const emojiPickerDiv = document.querySelector('.emoji-picker__wrapper');
+    if (emojiPickerDiv) emojiPickerDiv.remove();
+  }
+
   getValues() {
     const title = this.form.querySelector('.task-form__title').value;
     const description = this.form.querySelector('.task-form__description').value;
@@ -30,27 +42,31 @@ class TaskFormHandler {
     return [title, description, priority, dueDate, forProject];
   }
 
-  init() {
-    destroyDatePicker();
-    const datePickerInput = this.form.querySelector('#date-picker');
-    this.datePicker = new DatePickerHandler(datePickerInput);
-    this.datePicker.init(datePickerInput);
-    this.datePicker.setMinDate(new Date());
-    projectSelect.init();
-
-    const emojiPickerDiv = document.querySelector('.emoji-picker__wrapper');
-    if (emojiPickerDiv) emojiPickerDiv.remove();
-  }
-
-  addListeners() {
+  addListeners(projectTaskContainer) {
     const $SubmitBtn = this.form.querySelector('.task-form__submit');
     $SubmitBtn.addEventListener('click', event => {
       const validity = this.form.checkValidity();
       if (validity) {
         event.preventDefault();
-        createTask(this.getValues());
+        const task = createTask(this.getValues());
+        console.log(task);
         this.form.reset();
         this.datePicker.setMinDate(new Date());
+
+        if (projectTaskContainer) {
+          import('../TaskCard/TaskCard.js').then(({ TaskCard }) => {
+            const taskCard = new TaskCard(task);
+            console.log(taskCard);
+            projectTaskContainer.appendChild(taskCard.initTaskCard());
+            taskCard.initContent();
+            taskCard.initContent();
+
+            import('../TaskCard/taskCard_handler.js').then(({ TaskCardHandler }) => {
+              const taskCardHandler = new TaskCardHandler(taskCard);
+              taskCardHandler.addListeners();
+            });
+          });
+        }
       }
     });
   }
@@ -59,8 +75,9 @@ class TaskFormHandler {
 function createTask(values) {
   const task = new Task(...values);
   if (task.forProject) addTaskToProject(task.forProject, task.taskID);
-  // task.forProject is a randomUUID
   TaskStorage.addTask(task);
+  return task;
+  // task.forProject is a randomUUID
 }
 
 function addTaskToProject(projectID, taskID) {

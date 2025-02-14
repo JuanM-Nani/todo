@@ -17,24 +17,23 @@ export class ProjectCard {
   constructor(project) {
     this.project = project;
     this.card = null;
+    this.modal = null;
   }
 
   init() {
-    const $ProjectContainer = document.querySelector('.project-container');
     const card = document.createElement('div');
     card.classList.add('project-card');
     card.setAttribute('data-projectID', this.project.projectID);
     card.innerHTML = projectCardTmpl;
-    $ProjectContainer.appendChild(card);
-    this.card = card;
 
-    // TODO deberia iniciar aqui el modal... para que sea la unica vez
-    // TODO deberia iniciar aqui el modal... para que sea la unica vez
-    // TODO deberia iniciar aqui el modal... para que sea la unica vez
-    // TODO deberia iniciar aqui el modal... para que sea la unica vez
+    this.card = card;
+    return this.card;
   }
 
   initContent() {
+    this.modal = new ProjectViewModal(this.project, this.card);
+    this.modal.init();
+
     const emoji = this.card.querySelector('.project-card__emoji');
     const name = this.card.querySelector('.project-card__name');
     const description = this.card.querySelector('.project-card__description');
@@ -55,8 +54,10 @@ export class ProjectCard {
     const deleteProject = this.card.querySelector('.project-card__option--delete');
     deleteProject.addEventListener('click', () => {
       this.card.remove();
+      this.project.taskStorage.forEach(taskID => {
+        TaskStorage.removeTask(taskID);
+      });
       ProjectStorage.removeProject(this.project.projectID);
-      // TaskStorage.removeTask(this.project.)
     });
   }
 }

@@ -47,12 +47,12 @@ export class TaskSorter {
       const creationMethods = {
         newest: () => {
           return filteredStorage.toSorted((a, b) => {
-            return compareAsc(a.creationMoment, b.creationMoment);
+            return compareDesc(a.creationMoment, b.creationMoment);
           });
         },
         oldest: () => {
           return filteredStorage.toSorted((a, b) => {
-            return compareDesc(a.creationMoment, b.creationMoment);
+            return compareAsc(a.creationMoment, b.creationMoment);
           });
         },
       };
@@ -62,16 +62,16 @@ export class TaskSorter {
     alphabetically: (condition, filteredStorage) => {
       const alphabetMethods = {
         AtoZ: () => {
+          return filteredStorage.toSorted(task => {
+            task.title;
+          });
+        },
+        ZtoA: () => {
           return filteredStorage
             .toSorted(task => {
               task.title;
             })
             .toReversed();
-        },
-        ZtoA: () => {
-          return filteredStorage.toSorted(task => {
-            task.title;
-          });
         },
       };
 
@@ -231,9 +231,12 @@ export class TaskSorter {
   // SECTION search
   search(string) {
     const filtered = this.filter(this._currentFilter, this._currentFilterCondition);
-    const includedChars = filtered.filter(task =>
-      task.title.toLowerCase().includes(string.toLowerCase())
-    );
+    const includedChars = filtered.filter(task => {
+      if (task) {
+        return task.title.toLowerCase().includes(string.toLowerCase());
+      }
+    });
+
     return this.sort(this._currentSort, this._currentSortCondition, includedChars);
   }
 }

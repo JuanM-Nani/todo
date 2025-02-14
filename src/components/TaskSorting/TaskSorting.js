@@ -4,35 +4,19 @@ import { TaskSorter } from '../../logic/TaskSorter.js';
 import { initTaskCards } from '../../utils/initTaskCards.js';
 
 export class TaskSorterGroup {
-  constructor() {
+  constructor(taskContainer, taskSorter) {
+    this.taskContainer = taskContainer;
+    this.taskSorter = taskSorter;
     this.sorterGroup = null;
-    this.taskSorter = null;
-    this.taskContainer = null;
   }
 
-  init(project) {
+  init() {
     const group = document.createElement('div');
     group.innerHTML = taskSortingTmpl;
     group.classList.add('sort-option__group');
 
-    let taskSorter = null;
-    if (project) {
-      group.setAttribute('data-storage', project.projectID);
-      taskSorter = new TaskSorter(project.taskStorage);
-    } else {
-      const tasks = TaskStorage.show();
-      taskSorter = new TaskSorter(Array.from(tasks.values()));
-    }
-
     this.sorterGroup = group;
-    this.taskSorter = taskSorter;
-
-    const section = this.sorterGroup.parentElement;
-    if (section) {
-      this.taskContainer = section.nextElementSibling.querySelector('.task-container');
-    } else {
-      this.taskContainer = document.querySelector('.task-container');
-    }
+    return group;
   }
 
   addListeners() {

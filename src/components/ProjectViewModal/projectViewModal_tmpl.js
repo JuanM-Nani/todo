@@ -1,22 +1,15 @@
 import './styles.css';
 import { projectFormTmpl } from '../ProjectForm/projectForm_tmpl.js';
-import { taskSortingTmpl } from '../TaskSorting/taskSorting_tmpl.js';
 import { taskFormTmpl } from '../TaskForm/taskForm_tmpl.js';
 
 export const projectViewModalTmpl = `
 <dialog class="project-view">
-  <header class="project-view__header">
-    <button class="project-view__close">
-      <img class="project-view__image" src="" alt="" title="Close project view" />
-    </button>
-  </header>
   <section class="project-view__project-data">
     <div class="project-view__group--main-data">
     ${projectFormTmpl}
     </div>
   </section>
   <section class="project-view__task-management">
-    ${taskSortingTmpl}
   </section>
   <section class="project-view__add-task">
     <details class="project-view__form-details">
