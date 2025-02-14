@@ -23,8 +23,11 @@ function initTaskListSection() {
   header.appendChild(taskSorterGroup.sorterGroup);
   taskSorterGroup.addListeners();
   initTaskListCards();
-  const emojiPickerDiv = document.querySelector('.emoji-picker__wrapper');
-  if (emojiPickerDiv) emojiPickerDiv.remove();
+
+  const emojiPickerDivs = document.querySelectorAll('.emoji-picker__wrapper');
+  emojiPickerDivs.forEach(picker => {
+    picker?.remove();
+  });
 }
 
 function initTaskListCards() {

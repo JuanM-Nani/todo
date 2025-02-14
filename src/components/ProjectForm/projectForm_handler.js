@@ -24,7 +24,7 @@ export class ProjectFormHandler {
     return [emoji, name, description];
   }
 
-  addListeners(projectEdit) {
+  addListeners(projectEdit, emojiPicker) {
     const submitForm = this.form.querySelector('.project-form__submit');
 
     submitForm.addEventListener('click', event => {
@@ -37,6 +37,11 @@ export class ProjectFormHandler {
           const currentCard = modal.closest('.project-card');
           const projectID = currentCard.getAttribute('data-projectID');
           const project = ProjectStorage.getProjectByID(projectID);
+
+          emojiPicker.emojiButtonInstance.pickerEl.remove();
+          emojiPicker.emojiButtonInstance.pickerContent.remove();
+          emojiPicker.emojiButtonInstance.wrapper.remove();
+          emojiPicker.emojiButtonInstance.off();
 
           const projectKeys = ['emoji', 'name', 'description'];
           values.forEach((value, index) => project.edit(projectKeys[index], value));
@@ -55,6 +60,7 @@ export class ProjectFormHandler {
 }
 
 function replaceWithEditedCard(currentCard, editedProject) {
+  console.log(editedProject);
   const newProjectCard = new ProjectCard(editedProject);
   currentCard.replaceWith(newProjectCard.init());
   newProjectCard.initContent();

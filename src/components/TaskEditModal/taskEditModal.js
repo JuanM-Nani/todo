@@ -30,6 +30,7 @@ class TaskEditModalHandler {
     const form = modal.querySelector('.task-form');
     this.formHandler = new TaskFormHandler(form);
     this.formHandler.init();
+
     const flatpickrInstance = this.formHandler.datePicker.flatpickrInstance;
 
     if (!this.task.dueDate) {
@@ -41,7 +42,14 @@ class TaskEditModalHandler {
 
     const priorityRadio = modal.querySelectorAll('.task-form__input--radio');
     const projectOptions = modal.querySelectorAll('.task-form__project-option');
-    const projectSelect = new ProjectSelect(form);
+
+    if (modal.closest('.project-view')) {
+      // NOTE Remove the parentNode (label that contains the select)
+      const $ProjectSelect = modal.querySelector('.task-form__project-select');
+      $ProjectSelect.parentNode.remove();
+    } else {
+      const projectSelect = new ProjectSelect(form);
+    }
 
     // Put the same values that the task has
     title.value = this.task.title;
@@ -86,7 +94,8 @@ class TaskEditModalHandler {
       if (validity) {
         event.preventDefault();
         modal.close();
-        destroyDatePicker();
+        const flatpickrInstance = this.formHandler.datePicker.flatpickrInstance;
+        flatpickrInstance.destroy();
 
         const formValues = this.formHandler.getValues();
         // swap task between projects

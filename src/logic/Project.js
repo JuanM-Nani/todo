@@ -4,7 +4,7 @@ class ProjectManager {
   }
 
   removeTask(taskID) {
-    const index = this.taskStorage.findIndex(t => t.taskID === taskID);
+    const index = this.taskStorage.findIndex(t => t === taskID);
     this.taskStorage.splice(index, 1);
   }
 

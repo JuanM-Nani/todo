@@ -8,6 +8,7 @@ const projectCardTmpl = `
   <div class="project-card__group--main">
     <h2 class="project-card__name"></h2>
     <p class="project-card__description"></p>
+    <p class="project-card__tasks"></p>
   </div>
 <button class="project-card__option--open">Open</button>
 <button class="project-card__option--delete">Delete</button>
@@ -37,10 +38,12 @@ export class ProjectCard {
     const emoji = this.card.querySelector('.project-card__emoji');
     const name = this.card.querySelector('.project-card__name');
     const description = this.card.querySelector('.project-card__description');
+    const projectTasks = this.card.querySelector('.project-card__tasks');
 
     emoji.textContent = this.project.emoji;
     name.textContent = this.project.name;
     description.textContent = this.project.description || 'No description';
+    projectTasks.textContent = this.project.taskStorage.length;
   }
 
   addListeners() {
@@ -54,6 +57,7 @@ export class ProjectCard {
     const deleteProject = this.card.querySelector('.project-card__option--delete');
     deleteProject.addEventListener('click', () => {
       this.card.remove();
+
       this.project.taskStorage.forEach(taskID => {
         TaskStorage.removeTask(taskID);
       });

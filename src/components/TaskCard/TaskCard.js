@@ -52,11 +52,5 @@ export class TaskCard {
       const projectName = project.name;
       addMetaData('project', projectName, this.$TaskCard);
     }
-
-    // TODO terminar
-    /* if (this.task.subtasks.length) {
-      let subtasks = 3;
-      addMetaData('subtask', subtasks);
-    } */
   }
 }

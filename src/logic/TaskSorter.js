@@ -13,6 +13,7 @@ import {
   parse,
   isBefore,
 } from 'date-fns';
+import { TaskStorage } from './TaskStorage.js';
 
 export class TaskSorter {
   constructor(storage) {
@@ -39,7 +40,7 @@ export class TaskSorter {
 
   // SECTION sorting
   sort(sortMethod, condition, filteredStorage) {
-    return this.sortMethods[sortMethod](condition, filteredStorage);
+    return filterDeleted(this.sortMethods[sortMethod](condition, filteredStorage));
   }
 
   sortMethods = {
@@ -93,12 +94,25 @@ export class TaskSorter {
       const dueDateMethods = {
         soonest: () => {
           return filteredStorage.toSorted((a, b) => {
-            return compareAsc(a.dueDate, b.dueDate);
+            if (!a.dueDate) return 1;
+            if (!b.dueDate) return 1;
+
+            let parsedDateA = parse(a.dueDate, 'dd/MM/yyyy HH:mm', new Date());
+            let parsedDateB = parse(b.dueDate, 'dd/MM/yyyy HH:mm', new Date());
+
+            return compareAsc(parsedDateA, parsedDateB);
           });
         },
+
         furthest: () => {
           return filteredStorage.toSorted((a, b) => {
-            return compareDesc(a.dueDate, b.dueDate);
+            if (!a.dueDate) return -1;
+            if (!b.dueDate) return -1;
+
+            let parsedDateA = parse(a.dueDate, 'dd/MM/yyyy HH:mm', new Date());
+            let parsedDateB = parse(b.dueDate, 'dd/MM/yyyy HH:mm', new Date());
+
+            return compareDesc(parsedDateA, parsedDateB);
           });
         },
       };
@@ -109,7 +123,7 @@ export class TaskSorter {
 
   // SECTION filter
   filter(filterMethod, condition) {
-    return this.filterMethods[filterMethod](condition);
+    return filterDeleted(this.filterMethods[filterMethod](condition));
   }
 
   filterMethods = {
@@ -239,4 +253,11 @@ export class TaskSorter {
 
     return this.sort(this._currentSort, this._currentSortCondition, includedChars);
   }
+}
+
+// NOTE filter deleted tasks, the storage is not updated correctly
+function filterDeleted(sortResult) {
+  return sortResult.filter(t => {
+    return !!TaskStorage.getTaskByID(t.taskID);
+  });
 }

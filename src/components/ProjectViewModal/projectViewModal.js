@@ -21,7 +21,7 @@ export class ProjectViewModal {
       return TaskStorage.getTaskByID(taskID);
     });
 
-    initTaskCards(mappedTaskStorage, this.taskContainer);
+    initTaskCards(mappedTaskStorage, this.taskContainer, true);
 
     const projectForm = this.card.querySelector('.project-form');
     const submitProject = this.card.querySelector('.project-form__submit');
@@ -30,19 +30,23 @@ export class ProjectViewModal {
 
     this.projectFormHandler = new ProjectFormHandler(projectForm);
     this.projectFormHandler.init();
-    this.projectFormHandler.addListeners(true);
 
     const emojiPickerInstance = this.projectFormHandler.emojiPicker;
+    this.projectFormHandler.addListeners(true, emojiPickerInstance);
+
     const projectName = projectForm.querySelector('.project-form__name');
-    const description = projectForm.querySelector('.project-form__description');
+    const projectDescription = projectForm.querySelector('.project-form__description');
+
+    // removeLabels([emojiPickerInstance.]);
 
     emojiPickerInstance.selection = this.project.emoji;
     projectName.value = this.project.name;
     if (this.project.description) {
-      description.value = this.project.description;
+      projectDescription.value = this.project.description;
     } else {
-      description.placeholder = 'No description';
+      projectDescription.placeholder = 'No description';
     }
+    removeLabels([emojiPickerInstance.triggerButton, projectName, projectDescription]);
 
     this.taskSorterGroup = new TaskSorterGroup(
       this.taskContainer,
@@ -56,6 +60,20 @@ export class ProjectViewModal {
     const taskForm = this.card.querySelector('.task-form');
     this.taskFormHandler = new TaskFormHandler(taskForm);
     this.taskFormHandler.init();
-    this.taskFormHandler.addListeners(this.taskContainer);
+    this.taskFormHandler.addListeners(this.taskContainer, this.project.projectID);
+
+    const projectSelect = this.card.querySelector('.task-form__project-select');
+    const labelProject = projectSelect.closest('label');
+
+    projectSelect.remove();
+    labelProject.remove();
   }
+}
+
+function removeLabels(elements) {
+  elements.forEach(element => {
+    const label = element.parentNode;
+    label.parentNode.insertBefore(element, label);
+    label.remove();
+  });
 }

@@ -26,9 +26,9 @@ textarea {
 select {
   cursor: pointer;
 }
-option {
-  cursor: pointer;
-}
 summary {
   cursor: pointer;
+}
+img {
+  object-fit: cover;
 }

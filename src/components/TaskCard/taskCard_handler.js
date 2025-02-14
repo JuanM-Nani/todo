@@ -1,7 +1,6 @@
+import { ProjectStorage } from '../../logic/ProjectStorage.js';
 import { TaskStorage } from '../../logic/TaskStorage.js';
 import { TaskEditModalHandler } from '../TaskEditModal/taskEditModal.js';
-
-
 
 export class TaskCardHandler {
   constructor(taskCard) {
@@ -43,6 +42,11 @@ const taskCardOptions = [
     callback: (task, card) => {
       TaskStorage.removeTask(task.taskID);
       card.remove();
+
+      if (task.forProject) {
+        const project = ProjectStorage.getProjectByID(task.forProject);
+        project.removeTask(task.taskID);
+      }
     },
   },
 ];

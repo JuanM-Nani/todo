@@ -95,7 +95,8 @@ function sortResultHasTasks(sortResults, taskContainer) {
   if (sortResults.length) {
     initTaskCards(sortResults, taskContainer);
   } else {
-    // TODO imagen de no resultados
     taskContainer.replaceChildren();
+    // TODO colocar imagen de tareas no encontradas
+    taskContainer.innerHTML = `<img src="src/assets/img/error.png" alt="Not founded tasks" />`;
   }
 }
