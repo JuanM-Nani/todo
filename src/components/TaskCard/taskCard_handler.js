@@ -1,5 +1,6 @@
 import { ProjectStorage } from '../../logic/ProjectStorage.js';
 import { TaskStorage } from '../../logic/TaskStorage.js';
+import { nothingFoundedTmpl } from '../../utils/nothingFoundedTmpl.js';
 import { TaskEditModalHandler } from '../TaskEditModal/taskEditModal.js';
 
 export class TaskCardHandler {
@@ -41,7 +42,13 @@ const taskCardOptions = [
     elementClass: 'task-card__option--delete',
     callback: (task, card) => {
       TaskStorage.removeTask(task.taskID);
+
+      const taskContainer = card.closest('.task-container');
       card.remove();
+
+      if (!taskContainer.hasChildNodes()) {
+        taskContainer.innerHTML = nothingFoundedTmpl
+      }
 
       if (task.forProject) {
         const project = ProjectStorage.getProjectByID(task.forProject);

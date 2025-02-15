@@ -60,7 +60,6 @@ export class ProjectFormHandler {
 }
 
 function replaceWithEditedCard(currentCard, editedProject) {
-  console.log(editedProject);
   const newProjectCard = new ProjectCard(editedProject);
   currentCard.replaceWith(newProjectCard.init());
   newProjectCard.initContent();
@@ -69,6 +68,9 @@ function replaceWithEditedCard(currentCard, editedProject) {
 
 function createProject(values) {
   const $ProjectContainer = document.querySelector('.project-container');
+  const nothingFound = $ProjectContainer.querySelector('.nothing-founded');
+  nothingFound?.remove();
+
   const project = new Project(...values);
   ProjectStorage.addProject(project);
 

@@ -6,6 +6,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 import 'flatpickr/dist/themes/dark.css';
 
 import { TaskStorage } from './logic/TaskStorage.js';
+import { ProjectStorage } from './logic/ProjectStorage.js';
 import { isExpired } from './utils/isExpired.js';
 import { setTaskExpired } from './utils/setTaskExpired.js';
 import { sidebarTemplate } from './components/Sidebar/sidebar_tmpl.js';
@@ -17,16 +18,16 @@ import {
 } from './_nav_sections/01_addTaskSection.js';
 
 const $Body = document.querySelector('body');
-$Body.innerHTML = sidebarTemplate;
+$Body.innerHTML += sidebarTemplate;
 const main = document.createElement('main');
 main.id = 'content';
 $Body.appendChild(main);
 main.innerHTML = addTaskSectionHTML;
 
-// <>---------------------------<>
 sidebarHandler();
 initAddTaskSection();
 
+// NOTE to set expired task card styles
 setInterval(() => {
   const $$TaskCard = document.querySelectorAll('.task-card');
   if ($$TaskCard.length) {
@@ -40,3 +41,31 @@ setInterval(() => {
     });
   }
 }, 1000 * 60);
+
+// SECTION localStorage
+
+// ANCHOR get
+window.addEventListener('load', () => {
+  const localTaskStorage = localStorage.getItem('taskStorage');
+  const localProjectStorage = localStorage.getItem('projectStorage');
+
+  if (localTaskStorage && localProjectStorage) {
+    const parsedTaskStorage = new Map(JSON.parse(localTaskStorage));
+    const parsedProjectStorage = JSON.parse(localProjectStorage);
+
+    TaskStorage.setLocalTaskStorage(parsedTaskStorage);
+    ProjectStorage.setLocalProjectStorage(parsedProjectStorage);
+  }
+});
+
+// ANCHOR set
+window.addEventListener('beforeunload', () => {
+  const tasks = TaskStorage.show();
+  const projects = ProjectStorage.show();
+
+  const stringifiedTaskStorage = JSON.stringify(Array.from(tasks));
+  const stringifiedProjectStorage = JSON.stringify(projects);
+
+  localStorage.setItem('taskStorage', stringifiedTaskStorage);
+  localStorage.setItem('projectStorage', stringifiedProjectStorage);
+});

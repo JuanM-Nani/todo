@@ -1,6 +1,7 @@
 .project-view {
-  padding: 20px;
   position: absolute;
+  z-index: 15;
+  padding: 20px;
   inset: 0;
   top: 20%;
   left: 40%;

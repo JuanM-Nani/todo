@@ -3,6 +3,7 @@ import { TaskCardHandler } from '../components/TaskCard/taskCard_handler.js';
 import { TaskStorage } from '../logic/TaskStorage.js';
 import { TaskSorterGroup } from '../components/TaskSorting/TaskSorting.js';
 import { TaskSorter } from '../logic/TaskSorter.js';
+import { nothingFoundedTmpl } from '../utils/nothingFoundedTmpl.js';
 
 const taskListSectionHTML = `
 <section class="task-list">
@@ -34,14 +35,19 @@ function initTaskListCards() {
   const tasks = TaskStorage.show();
   const $CardContainer = document.querySelector('.task-container');
 
-  tasks.forEach(t => {
-    const taskCard = new TaskCard(t);
-    $CardContainer.appendChild(taskCard.initTaskCard());
-    taskCard.initContent();
-    taskCard.initMetaData();
-    const taskCardHandler = new TaskCardHandler(taskCard);
-    taskCardHandler.addListeners();
-  });
+  if (tasks.size) {
+    // NOTE size for map instance
+    tasks.forEach(t => {
+      const taskCard = new TaskCard(t);
+      $CardContainer.appendChild(taskCard.initTaskCard());
+      taskCard.initContent();
+      taskCard.initMetaData();
+      const taskCardHandler = new TaskCardHandler(taskCard);
+      taskCardHandler.addListeners();
+    });
+  } else {
+    $CardContainer.innerHTML = nothingFoundedTmpl
+  }
 }
 
 // REVIEW

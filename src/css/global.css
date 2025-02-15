@@ -1,15 +1,28 @@
 body {
-  background-color: #4d4d4d;
   height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+
+  background-image: url(../assets/img/app-bg.avif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 #content {
   width: 80vw;
+  height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 15;
+
+  backdrop-filter: blur(6px) saturate(200%);
+  -webkit-backdrop-filter: blur(6px) saturate(200%);
+  background-color: rgba(59, 59, 59, 0.288);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
 }
 button {
   background-color: transparent;
@@ -31,4 +44,23 @@ summary {
 }
 img {
   object-fit: cover;
+  aspect-ratio: 1;
+}
+.nothing-founded {
+  display: grid;
+  place-content: center;
+  text-align: center;
+  font-size: 4rem;
+}
+#overlay {
+  width: 100vw;
+  height: 100vh;
+  background: #ff00005d;
+  display: none;
+  z-index: 0;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

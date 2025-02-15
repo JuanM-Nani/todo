@@ -18,11 +18,9 @@ export class ProjectSelect {
 
   init() {
     const projectList = ProjectStorage.show();
-    if (projectList.length) {
-      let $Select;
+    const $Select = this.form.querySelector('.task-form__project-select');
 
-      if (this.form) $Select = this.form.querySelector('.task-form__project-select');
-      else $Select = document.querySelector('.task-form__project-select');
+    if (projectList.length && $Select) {
 
       projectList.forEach(p => {
         const $Option = document.createElement('option');

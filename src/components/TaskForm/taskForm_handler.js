@@ -21,7 +21,11 @@ class TaskFormHandler {
     this.datePicker = new DatePickerHandler(datePickerInput);
     this.datePicker.init(datePickerInput);
     this.datePicker.setMinDate(new Date());
-    projectSelect.init();
+    const projectSelect = new ProjectSelect(this.form);
+
+    setTimeout(() => {
+      projectSelect.init();
+    }, 500);
   }
 
   getValues(project) {
@@ -47,6 +51,7 @@ class TaskFormHandler {
 
   addListeners(projectTaskContainer, project) {
     const $SubmitBtn = this.form.querySelector('.task-form__submit');
+
     $SubmitBtn.addEventListener('click', event => {
       const validity = this.form.checkValidity();
       if (validity) {
@@ -56,6 +61,9 @@ class TaskFormHandler {
         this.datePicker.setMinDate(new Date());
 
         if (projectTaskContainer) {
+          const nothingFound = projectTaskContainer.querySelector('.nothing-founded');
+          nothingFound?.remove();
+
           import('../TaskCard/TaskCard.js').then(({ TaskCard }) => {
             const taskCard = new TaskCard(task);
             projectTaskContainer.appendChild(taskCard.initTaskCard());

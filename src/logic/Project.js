@@ -1,4 +1,12 @@
-class ProjectManager {
+export class Project {
+  constructor(emoji, name, description) {
+    this.emoji = emoji;
+    this.name = name;
+    this.description = description;
+    this.taskStorage = [];
+    this.projectID = crypto.randomUUID();
+  }
+
   addTask(taskID) {
     this.taskStorage.push(taskID);
   }
@@ -10,16 +18,5 @@ class ProjectManager {
 
   edit(key, newValue) {
     this[key] = newValue;
-  }
-}
-
-export class Project extends ProjectManager {
-  constructor(emoji, name, description) {
-    super();
-    this.emoji = emoji;
-    this.name = name;
-    this.description = description;
-    this.taskStorage = [];
-    this.projectID = crypto.randomUUID();
   }
 }

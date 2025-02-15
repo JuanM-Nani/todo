@@ -1,3 +1,4 @@
+import { Project } from './Project.js';
 export class ProjectStorage {
   static #projectStorage = [];
 
@@ -16,5 +17,12 @@ export class ProjectStorage {
 
   static show() {
     return this.#projectStorage;
+  }
+
+  static setLocalProjectStorage(localProjectStorage) {
+    this.#projectStorage = localProjectStorage;
+    this.#projectStorage.forEach(p => {
+      Object.setPrototypeOf(p, Project.prototype);
+    });
   }
 }

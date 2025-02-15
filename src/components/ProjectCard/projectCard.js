@@ -49,9 +49,20 @@ export class ProjectCard {
   addListeners() {
     const openProjectView = this.card.querySelector('.project-card__option--open');
     const modal = this.card.querySelector('.project-view');
+    const overlay = document.querySelector('#overlay');
 
     openProjectView.addEventListener('click', () => {
+      const modalZIndex = window.getComputedStyle(modal).zIndex;
+
+      const modalChildren = modal.querySelectorAll('*');
+      modalChildren.forEach(child => {
+        child.style.zIndex = 1000;
+      });
+
       modal.show();
+
+      overlay.style.display = 'block';
+      overlay.style.zIndex = String(modalZIndex - 1);
     });
 
     const deleteProject = this.card.querySelector('.project-card__option--delete');

@@ -25,8 +25,8 @@ export class ProjectViewModal {
 
     const projectForm = this.card.querySelector('.project-form');
     const submitProject = this.card.querySelector('.project-form__submit');
-    submitProject.innerHTML = `<img src="./src/assets/svg/trash.svg" alt="">`;
     submitProject.classList.add('project-view__close');
+    submitProject.innerHTML = `<img src="./src/assets/svg/trash.svg" alt="">`;
 
     this.projectFormHandler = new ProjectFormHandler(projectForm);
     this.projectFormHandler.init();

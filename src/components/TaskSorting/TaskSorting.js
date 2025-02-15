@@ -2,6 +2,7 @@ import { taskSortingTmpl } from './taskSorting_tmpl.js';
 import { TaskStorage } from '../../logic/TaskStorage.js';
 import { TaskSorter } from '../../logic/TaskSorter.js';
 import { initTaskCards } from '../../utils/initTaskCards.js';
+import { nothingFoundedTmpl } from '../../utils/nothingFoundedTmpl.js';
 
 export class TaskSorterGroup {
   constructor(taskContainer, taskSorter) {
@@ -95,8 +96,6 @@ function sortResultHasTasks(sortResults, taskContainer) {
   if (sortResults.length) {
     initTaskCards(sortResults, taskContainer);
   } else {
-    taskContainer.replaceChildren();
-    // TODO colocar imagen de tareas no encontradas
-    taskContainer.innerHTML = `<img src="src/assets/img/error.png" alt="Not founded tasks" />`;
+    taskContainer.innerHTML = nothingFoundedTmpl
   }
 }

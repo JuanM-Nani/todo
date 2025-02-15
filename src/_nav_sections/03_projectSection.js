@@ -2,6 +2,7 @@ import { ProjectStorage } from '../logic/ProjectStorage.js';
 import { ProjectFormHandler } from '../components/ProjectForm/projectForm_handler.js';
 import { projectFormTmpl } from '../components/ProjectForm/projectForm_tmpl.js';
 import { ProjectCard } from '../components/ProjectCard/projectCard.js';
+import { nothingFoundedTmpl } from '../utils/nothingFoundedTmpl.js';
 
 const projectSectionHTML = `
 <section class="projects">
@@ -22,14 +23,19 @@ function initProjectSection() {
 
 function initProjectCards() {
   const projects = ProjectStorage.show();
+
   const $ProjectContainer = document.querySelector('.project-container');
-  projects.forEach(p => {
-    const projecCard = new ProjectCard(p);
-    const card = projecCard.init();
-    $ProjectContainer.appendChild(card);
-    projecCard.initContent();
-    projecCard.addListeners();
-  });
+  if (projects.length) {
+    projects.forEach(p => {
+      const projecCard = new ProjectCard(p);
+      const card = projecCard.init();
+      $ProjectContainer.appendChild(card);
+      projecCard.initContent();
+      projecCard.addListeners();
+    });
+  } else {
+    $ProjectContainer.innerHTML = nothingFoundedTmpl;
+  }
 }
 
 export { projectSectionHTML, initProjectSection };

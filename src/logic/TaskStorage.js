@@ -1,3 +1,4 @@
+import { Task } from './Task.js';
 export class TaskStorage {
   static #taskStorage = new Map();
 
@@ -16,6 +17,11 @@ export class TaskStorage {
   static show() {
     return this.#taskStorage;
   }
+
+  static setLocalTaskStorage(localTaskStorage) {
+    this.#taskStorage = localTaskStorage;
+    this.#taskStorage.forEach(t => {
+      Object.setPrototypeOf(t, Task.prototype);
+    });
+  }
 }
-
-
