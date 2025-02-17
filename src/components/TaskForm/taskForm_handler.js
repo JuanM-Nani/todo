@@ -1,7 +1,4 @@
-import {
-  DatePickerHandler,
-  destroyDatePicker,
-} from '../DatePicker/datePicker_handler.js';
+import { DatePickerHandler } from '../DatePicker/datePicker_handler.js';
 import { ProjectSelect } from '../ForProjectSelect/projectSelect_handler.js';
 import { Task } from '../../logic/Task.js';
 import { TaskStorage } from '../../logic/TaskStorage.js';
@@ -17,7 +14,7 @@ class TaskFormHandler {
   }
 
   init() {
-    const datePickerInput = this.form.querySelector('#date-picker');
+    const datePickerInput = this.form.querySelector('#due-date');
     this.datePicker = new DatePickerHandler(datePickerInput);
     this.datePicker.init(datePickerInput);
     this.datePicker.setMinDate(new Date());
@@ -32,7 +29,7 @@ class TaskFormHandler {
     const title = this.form.querySelector('.task-form__title').value;
     const description = this.form.querySelector('.task-form__description').value;
     const priority = this.form.querySelector('.task-form__input--radio:checked').value;
-    const dueDatePick = this.form.querySelector('#date-picker').value;
+    const dueDatePick = this.form.querySelector('#due-date').value;
     const noDueDate = this.form.querySelector('.task-form__no-due-date').checked;
     const dueDate = noDueDate ? null : dueDatePick;
 
@@ -54,9 +51,12 @@ class TaskFormHandler {
 
     $SubmitBtn.addEventListener('click', event => {
       const validity = this.form.checkValidity();
+      const values = this.getValues(project);
+
       if (validity) {
         event.preventDefault();
-        const task = createTask(this.getValues(project));
+
+        const task = createTask(values);
         this.form.reset();
         this.datePicker.setMinDate(new Date());
 

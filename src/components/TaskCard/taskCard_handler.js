@@ -34,8 +34,10 @@ const taskCardOptions = [
       const modalHandler = new TaskEditModalHandler(task, card);
       modalHandler.init();
       modalHandler.addListeners();
+
       const modal = card.querySelector('.edit-task');
-      modal.show();
+
+      modal.showModal();
     },
   },
   {
@@ -47,7 +49,7 @@ const taskCardOptions = [
       card.remove();
 
       if (!taskContainer.hasChildNodes()) {
-        taskContainer.innerHTML = nothingFoundedTmpl
+        taskContainer.innerHTML = nothingFoundedTmpl;
       }
 
       if (task.forProject) {

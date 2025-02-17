@@ -247,7 +247,7 @@ export class TaskSorter {
     const filtered = this.filter(this._currentFilter, this._currentFilterCondition);
     const includedChars = filtered.filter(task => {
       if (task) {
-        return task.title.toLowerCase().includes(string.toLowerCase());
+        return task.title.toLowerCase().includes(string.toLowerCase().trim());
       }
     });
 

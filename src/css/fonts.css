@@ -1,12 +1,15 @@
 @font-face {
-  font-family: 'light';
-  src: url() format();
-}
-@font-face {
-  font-family: 'default';
-  src: url() format();
+  font-family: 'regular';
+  src: url(/src/assets/fonts/Zain-Regular.ttf) format('truetype');
+  font-display: swap;
 }
 @font-face {
   font-family: 'bold';
-  src: url() format();
+  src: url(/src/assets/fonts/Zain-Bold.ttf) format('truetype');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'italic';
+  src: url(/src/assets/fonts/Zain-Italic.ttf) format('truetype');
+  font-display: swap;
 }

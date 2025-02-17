@@ -13,7 +13,7 @@ export class Task {
     this.taskID = crypto.randomUUID();
   }
 
-  edit = function (key, newValue) {
+  edit(key, newValue) {
     this[key] = newValue;
-  };
+  }
 }

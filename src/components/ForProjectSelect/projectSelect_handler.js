@@ -21,7 +21,6 @@ export class ProjectSelect {
     const $Select = this.form.querySelector('.task-form__project-select');
 
     if (projectList.length && $Select) {
-
       projectList.forEach(p => {
         const $Option = document.createElement('option');
         $Option.classList.add('task-form__project-option');

@@ -1,5 +1,5 @@
-import { taskFormTmpl } from '../components/TaskForm/taskForm_tmpl.js';
-import { TaskFormHandler } from '../components/TaskForm/taskForm_handler.js';
+import { taskFormTmpl } from '../../components/TaskForm/taskForm_tmpl.js';
+import { TaskFormHandler } from '../../components/TaskForm/taskForm_handler.js';
 
 const addTaskSectionHTML = `
 <section class="add-task">${taskFormTmpl}</section>

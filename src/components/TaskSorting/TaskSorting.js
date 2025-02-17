@@ -94,8 +94,9 @@ function removeUnnecesaryTasks(selector, taskContainer) {
 
 function sortResultHasTasks(sortResults, taskContainer) {
   if (sortResults.length) {
+    taskContainer.replaceChildren();
     initTaskCards(sortResults, taskContainer);
   } else {
-    taskContainer.innerHTML = nothingFoundedTmpl
+    taskContainer.innerHTML = nothingFoundedTmpl;
   }
 }

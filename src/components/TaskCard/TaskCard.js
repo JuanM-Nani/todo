@@ -27,7 +27,7 @@ export class TaskCard {
     if (isExpired(this.task)) {
       setTaskExpired($Card, this.task);
     } else if (this.task.isCompleted) {
-      this.$TaskCard.classList.add('task-card--completed');
+      $Card.classList.add('task-card--completed');
     }
 
     this.$TaskCard = $Card;

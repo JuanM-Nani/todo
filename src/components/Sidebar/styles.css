@@ -2,21 +2,41 @@
   background-color: var(--dark);
   width: 20vw;
   height: 100vh;
-  padding: 2rem;
+  padding: 2rem 1rem;
+
+  backdrop-filter: blur(12px) saturate(200%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  background-color: #0e0d0d99;
+  border-right: 1px solid #3b3b3bbe;
 }
 .nav-list__button {
+  user-select: none;
   padding: 0.4rem 1rem;
+  border-radius: 6px;
   width: 100%;
+  border: none;
+  transition: 100ms;
+
+  &:hover:not(.nav-list__button--current) {
+    opacity: 50%;
+  }
+
+  &:active:not(.nav-list__button--current) {
+    transform: scale(0.99);
+  }
 }
-/* NOTE add styles to current nav */
 .nav-list__button--current {
-  background-color: red;
+  background: var(--field__bg);
+  box-shadow: var(--field__shadow--first), var(--field__shadow--second);
 }
 .nav-list__span {
   display: flex;
   align-items: center;
+  gap: 1rem;
+  font-family: 'bold';
+  color: var(--light);
+  font-size: var(--medium-fs);
 }
 .nav-list__image {
-  width: 20%;
-  aspect-ratio: 1;
+  width: 15%;
 }

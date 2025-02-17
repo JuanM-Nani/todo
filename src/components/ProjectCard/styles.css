@@ -1,2 +1,58 @@
 .project-card {
+  display: flex;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+.project-card__image {
+  width: var(--large-fs);
+  aspect-ratio: 1;
+}
+.project-card__emoji {
+  font-size: var(--giant-fs);
+}
+.project-card__name {
+  font-family: 'italic';
+  font-size: var(--large-fs);
+  color: var(--light);
+}
+.project-card__description {
+  font-size: var(--small-fs);
+  color: var(--semi-light);
+  max-width: 24ch;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  overflow: hidden;
+}
+.project-card__tasks {
+  font-size: var(--small-fs);
+}
+.project-card__group--emoji {
+  height: var(--giant-fs);
+  margin-right: 1rem;
+}
+.project-card__group--main {
+}
+.project-card__group--tasks {
+  outline: 2px solid peru;
+  display: flex;
+  /* NOTE corregir */
+  display: none !important;
+  flex-direction: column;
+  color: var(--semi-light);
+  margin-left: auto;
+
+  & img {
+    width: 30px;
+  }
+}
+.project-card__group--options {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+@media (max-width: 600px) {
+  .project-card__description {
+    max-width: 18ch;
+  }
 }

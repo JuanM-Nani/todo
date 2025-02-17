@@ -2,7 +2,6 @@ import './styles.css';
 import { taskFormTmpl } from '../TaskForm/taskForm_tmpl.js';
 import { ProjectSelect } from '../ForProjectSelect/projectSelect_handler.js';
 import { ProjectStorage } from '../../logic/ProjectStorage.js';
-import { destroyDatePicker } from '../DatePicker/datePicker_handler.js';
 import { TaskFormHandler } from '../TaskForm/taskForm_handler.js';
 import { TaskCard } from '../TaskCard/TaskCard.js';
 import { TaskCardHandler } from '../TaskCard/taskCard_handler.js';
@@ -63,7 +62,7 @@ class TaskEditModalHandler {
       const noDate = modal.querySelector('.task-form__no-due-date');
       noDate.checked = true;
     } else {
-      const dueDateInput = modal.querySelector('.task-form #date-picker');
+      const dueDateInput = modal.querySelector('.task-form #due-date');
       dueDateInput.textContext = this.task.dueDate;
     }
 

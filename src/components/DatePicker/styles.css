@@ -1,3 +1,59 @@
+label[for='due-date'] {
+  position: relative;
+}
 .flatpickr-calendar {
   z-index: 10;
+  border: var(--dark-border);
+  overflow: hidden;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+}
+.flatpickr-innerContainer {
+  background-color: var(--dark);
+}
+.flatpickr-weekday {
+  background-color: var(--dark) !important;
+}
+.flatpickr-month {
+  background-color: var(--dark) !important;
+}
+.flatpickr-current-month {
+  background-color: var(--dark) !important;
+}
+.flatpickr-monthDropdown-months {
+  background-color: var(--dark) !important;
+}
+.flatpickr-day.selected {
+  background-color: var(--primary);
+  border: none;
+
+  &:hover {
+    outline: none;
+    background-color: var(--primary) !important;
+  }
+}
+.flatpickr-weekdaycontainer {
+  background-color: var(--dark);
+}
+.flatpickr-day {
+  border: none;
+}
+.flatpickr-day:hover:not(.flatpickr-day.selected) {
+  border: none;
+  background-color: var(--primary);
+  opacity: 50%;
+}
+.flatpickr-day.today {
+  outline: 1px solid var(--primary);
+}
+.flatpickr-disabled,
+.nextMonthDay,
+.prevMonthDay {
+  opacity: 30% !important;
+  color: var(--placeholder) !important;
+
+  &:hover {
+    background-color: transparent !important;
+  }
 }

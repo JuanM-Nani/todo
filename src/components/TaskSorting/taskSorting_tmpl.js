@@ -1,7 +1,9 @@
+import './styles.css';
+
 export const taskSortingTmpl = `
 <label class="label--sorter" for="sorting-options">
   Sort by:
-  <select class="task-sort" id="sorting-options">
+  <select class="task-sort" id="sorting-options" >
     <optgroup label="Creation moment">
       <option value="creationMoment" data-condition="oldest" selected>Oldest</option>
       <option value="creationMoment" data-condition="newest">Newest</option>
@@ -46,9 +48,9 @@ export const taskSortingTmpl = `
     </optgroup>
   </select>
 </label>
-<label class="label--sorter" for="task-search-bar">
+<label class="label--sorter" for="task-search-bar" >
   Search task by name:
-  <input class="task-search-bar" type="text" />
+  <input class="task-search-bar" type="text" placeholder="Do the shopping..."/>
 </label>
 <button class="delete-task--completed">Delete completed</button>
 <button class="delete-task--expired">Delete Expired</button>

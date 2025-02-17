@@ -2,7 +2,7 @@ import flatpickr from 'flatpickr';
 import './styles.css';
 
 const datePickerTmpl = `
-<input class="task-form__input" type="text" name="date-picker" id="date-picker">
+<input class="task-form__input" type="text" name="date-picker" id="due-date" readonly>
 `;
 
 class DatePickerHandler {
@@ -19,9 +19,13 @@ class DatePickerHandler {
       enableTime: true,
       time_24hr: true,
       theme: 'dark',
-      allowInput: false,
       minuteIncrement: 1,
+      allowInput: false,
       disableMobile: true,
+      readonlyInput: true,
+      nextArrow: '➡️',
+      prevArrow: '⬅️',
+      appendTo: this.triggerElement.closest('label'),
     });
   }
 
@@ -31,9 +35,4 @@ class DatePickerHandler {
   }
 }
 
-function destroyDatePicker() {
-  const calendarDiv = document.querySelector('.flatpickr-calendar');
-  if (!!calendarDiv) calendarDiv.remove();
-}
-
-export { datePickerTmpl, DatePickerHandler, destroyDatePicker };
+export { datePickerTmpl, DatePickerHandler };

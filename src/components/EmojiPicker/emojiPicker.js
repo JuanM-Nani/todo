@@ -29,7 +29,7 @@ class EmojiPicker {
   addListeners() {
     this.triggerButton.addEventListener('click', event => {
       event.preventDefault();
-      this.emojiButtonInstance.togglePicker();
+      this.emojiButtonInstance.togglePicker(this.triggerButton);
     });
 
     this.emojiButtonInstance.on('emoji', selection => {

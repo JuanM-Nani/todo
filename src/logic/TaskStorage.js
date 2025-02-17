@@ -20,8 +20,11 @@ export class TaskStorage {
 
   static setLocalTaskStorage(localTaskStorage) {
     this.#taskStorage = localTaskStorage;
+
     this.#taskStorage.forEach(t => {
-      Object.setPrototypeOf(t, Task.prototype);
+      const task = new Task();
+      const edit = task.edit;
+      t.edit = edit;
     });
   }
 }

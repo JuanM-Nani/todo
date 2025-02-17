@@ -12,7 +12,7 @@
 }
 .task-card--completed {
   background-color: rgb(116, 204, 34);
-  opacity: 50%;
+  text-decoration: line-through; /* Tacha el texto */
 }
 .task-card--expired {
   background-color: red;

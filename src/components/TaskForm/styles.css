@@ -1,1 +1,3 @@
-/* From Uiverse.io by Pradeepsaranbishnoi */
+.task-form__no-due-date:checked .flatpickr-input {
+  border: 20px solid red;
+}

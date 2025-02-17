@@ -1,4 +1,24 @@
 :root {
-  --bg-random: #4d4d4d;
-  --dark: #302f2f;
+  --primary: #ee7a0e;
+  --dark: #212121;
+  --light: #f9f9f9;
+  --semi-light: #f7e6d7;
+
+  --placeholder: #a0a0a0;
+  --dark-border: 2px solid #525252b4;
+  --focus-border: 2px solid #ee7a0eb0;
+
+  --field__padding: 0.4rem 0.6rem;
+  --field__bg: #333131;
+  --field__shadow--first: inset 20px 20px 60px #2e2c2c;
+  --field__shadow--second: inset -20px -20px 60px #353535;
+
+  /* --primary-gradient: linear-gradient(90deg, #352f2a98, #7448178a, #77206898),
+    linear-gradient(180deg, #4f11acbe, #751f0a9c); */
+
+  --small-fs: clamp(1rem, 0.6vw + 1rem, 1.8rem);
+  --medium-fs: clamp(1.4rem, 1.2vw + 1rem, 2.4rem);
+  --large-fs: clamp(1.8rem, 1.6vw + 1rem, 2.8rem);
+  --giant-fs: clamp(4rem, 5.5vw + 1rem, 5rem);
+
 }

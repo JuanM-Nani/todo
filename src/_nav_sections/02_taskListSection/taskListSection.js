@@ -1,9 +1,9 @@
-import { TaskCard } from '../components/TaskCard/TaskCard.js';
-import { TaskCardHandler } from '../components/TaskCard/taskCard_handler.js';
-import { TaskStorage } from '../logic/TaskStorage.js';
-import { TaskSorterGroup } from '../components/TaskSorting/TaskSorting.js';
-import { TaskSorter } from '../logic/TaskSorter.js';
-import { nothingFoundedTmpl } from '../utils/nothingFoundedTmpl.js';
+import { TaskCard } from '../../components/TaskCard/TaskCard.js';
+import { TaskCardHandler } from '../../components/TaskCard/taskCard_handler.js';
+import { TaskStorage } from '../../logic/TaskStorage.js';
+import { TaskSorterGroup } from '../../components/TaskSorting/TaskSorting.js';
+import { TaskSorter } from '../../logic/TaskSorter.js';
+import { nothingFoundedTmpl } from '../../utils/nothingFoundedTmpl.js';
 
 const taskListSectionHTML = `
 <section class="task-list">
@@ -29,6 +29,8 @@ function initTaskListSection() {
   emojiPickerDivs.forEach(picker => {
     picker?.remove();
   });
+  const $$EmojiWrapper = document.querySelectorAll('.emoji-picker__wrapper');
+  $$EmojiWrapper.forEach(element => element?.remove);
 }
 
 function initTaskListCards() {
@@ -46,7 +48,7 @@ function initTaskListCards() {
       taskCardHandler.addListeners();
     });
   } else {
-    $CardContainer.innerHTML = nothingFoundedTmpl
+    $CardContainer.innerHTML = nothingFoundedTmpl;
   }
 }
 

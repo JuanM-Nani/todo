@@ -1,8 +1,9 @@
-import { ProjectStorage } from '../logic/ProjectStorage.js';
-import { ProjectFormHandler } from '../components/ProjectForm/projectForm_handler.js';
-import { projectFormTmpl } from '../components/ProjectForm/projectForm_tmpl.js';
-import { ProjectCard } from '../components/ProjectCard/projectCard.js';
-import { nothingFoundedTmpl } from '../utils/nothingFoundedTmpl.js';
+import './styles.css'
+import { ProjectStorage } from '../../logic/ProjectStorage.js';
+import { ProjectFormHandler } from '../../components/ProjectForm/projectForm_handler.js';
+import { projectFormTmpl } from '../../components/ProjectForm/projectForm_tmpl.js';
+import { ProjectCard } from '../../components/ProjectCard/projectCard.js';
+import { nothingFoundedTmpl } from '../../utils/nothingFoundedTmpl.js';
 
 const projectSectionHTML = `
 <section class="projects">

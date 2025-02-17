@@ -22,7 +22,15 @@ export class ProjectStorage {
   static setLocalProjectStorage(localProjectStorage) {
     this.#projectStorage = localProjectStorage;
     this.#projectStorage.forEach(p => {
-      Object.setPrototypeOf(p, Project.prototype);
+      const project = new Project();
+
+      const removeTask = project.removeTask;
+      const addTask = project.addTask;
+      const edit = project.edit;
+
+      p.removeTask = removeTask;
+      p.addTask = addTask;
+      p.edit = edit;
     });
   }
 }
