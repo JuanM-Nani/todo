@@ -1,6 +1,8 @@
+import nothingFoundedImg from '../assets/img/nothing-founded.png';
+
 export const nothingFoundedTmpl = `
   <div class="nothing-founded">
     <span>Nothing founded here</span>
-    <img src="src/assets/img/nothing-founded.png" alt="Nothing founded">
+    <img src=${nothingFoundedTmpl} alt="Nothing founded">
   </div>
 `;

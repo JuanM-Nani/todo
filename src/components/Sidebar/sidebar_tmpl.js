@@ -1,4 +1,7 @@
 import './styles.css';
+import addSvg from '../../assets/svg/add.svg';
+import taskSvg from '../../assets/svg/task.svg';
+import projectSvg from '../../assets/svg/project.svg';
 
 export const sidebarTemplate = `
 <aside class="nav-sidebar">
@@ -6,7 +9,7 @@ export const sidebarTemplate = `
     <li class="nav-list__item">
       <button class="nav-list__button nav-list__button--add-task">
         <span class="nav-list__span">
-          <img class="nav-list__image" src="./src/assets/svg/add.svg" alt="add-icon" />
+          <img class="nav-list__image" src=${addSvg}  alt="add-icon" />
           Add task
         </span>
       </button>
@@ -14,7 +17,7 @@ export const sidebarTemplate = `
     <li class="nav-list__item">
       <button class="nav-list__button nav-list__button--tasks">
         <span class="nav-list__span">
-          <img class="nav-list__image" src="./src/assets/svg/task.svg" alt="task-icon" />
+          <img class="nav-list__image" src=${taskSvg} alt="task-icon" />
           Task list
         </span>
       </button>
@@ -22,7 +25,7 @@ export const sidebarTemplate = `
     <li class="nav-list__item">
       <button class="nav-list__button nav-list__button--project">
         <span class="nav-list__span">
-          <img class="nav-list__image" src="./src/assets/svg/project.svg" alt="project-icon" />
+          <img class="nav-list__image" src=${projectSvg} alt="project-icon" />
           Project
         </span>
       </button>

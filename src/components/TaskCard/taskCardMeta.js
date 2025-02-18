@@ -1,16 +1,16 @@
-import projectSVG from '../../assets/svg/project.svg';
-import subtaskSVG from '../../assets/svg/subtask.svg';
+import projectSvg from '../../assets/svg/project.svg';
+import subtaskSvg from '../../assets/svg/subtask.svg';
 
 const meta = {
   project: {
     selector: '.task-card__project',
-    src: projectSVG,
+    src: projectSvg,
     alt: 'project',
     title: 'Project',
   },
   subtask: {
     selector: '.task-card__subtask',
-    src: subtaskSVG,
+    src: subtaskSvg,
     alt: 'subtask',
     title: 'Subtask',
   },

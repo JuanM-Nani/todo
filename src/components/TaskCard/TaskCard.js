@@ -1,4 +1,3 @@
-import './styles.css';
 import { TaskCardTmpl } from './taskCard_tmpl.js';
 import { addMetaData } from './taskCardMeta.js';
 import { ProjectStorage } from '../../logic/ProjectStorage.js';
@@ -11,7 +10,7 @@ const priorityColors = {
   2: 'yellow',
   bg2: '#ffee0041',
   3: 'red',
-  bg3: '#ff000041'
+  bg3: '#ff000041',
 };
 
 export class TaskCard {

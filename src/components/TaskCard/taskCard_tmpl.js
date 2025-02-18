@@ -1,4 +1,8 @@
+import './styles.css';
 import { taskEditModalTmpl } from '../TaskEditModal/taskEditModal.js';
+import { markCompleteSvg } from '../../assets/svg/mark_complete.svg';
+import { editSvg } from '../../assets/svg/edit.svg';
+import { trashSvg } from '../../assets/svg/trash.svg';
 
 export const TaskCardTmpl = `
   <div class="task-card__group--content">
@@ -12,13 +16,13 @@ export const TaskCardTmpl = `
   </div>
   <aside class="task-card__group--options">
     <button class="task-card__option--mark-complete" title="Change status">
-      <img src="./src/assets/svg/mark_complete.svg" alt="mark-complete" />
+      <img src=${markCompleteSvg} alt="mark-complete" />
     </button>
     <button class="task-card__option--edit" title="Edit task">
-      <img src="./src/assets/svg/edit.svg" alt="edit" />
+      <img src=${editSvg} alt="edit" />
     </button>
     <button class="task-card__option--delete" title="Delete task">
-      <img src="./src/assets/svg/trash.svg" alt="delete" />
+      <img src=${trashSvg} alt="delete" />
     </button>
   </aside>
   ${taskEditModalTmpl}

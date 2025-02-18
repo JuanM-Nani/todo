@@ -1,32 +1,9 @@
-import './styles.css';
-import { projectViewModalTmpl } from '../ProjectViewModal/projectViewModal_tmpl.js';
 import { ProjectViewModal } from '../ProjectViewModal/projectViewModal.js';
 import { ProjectStorage } from '../../logic/ProjectStorage.js';
 import { TaskStorage } from '../../logic/TaskStorage.js';
+import { projectCardTmpl } from './projectCard_tmpl.js';
 import { nothingFoundedTmpl } from '../../utils/nothingFoundedTmpl.js';
 
-const projectCardTmpl = `
-<div class="project-card__group--emoji">
-  <h1 class="project-card__emoji"></h1>
-</div>
-<div class="project-card__group--main">
-  <h2 class="project-card__name"></h2>
-  <p class="project-card__description"></p>
-</div>
-<div class="project-card__group--tasks">
-  <p class="project-card__tasks"></p>
-  <img class="project-card__image" src="/src/assets/svg/task.svg">
-</div>
-<div class="project-card__group--options">
-  <button class="project-card__option--open" title="View">
-    <img class="project-card__image" src="/src/assets/svg/edit.svg">
-  </button>
-  <button class="project-card__option--delete" title="Delete">
-    <img class="project-card__image" src="/src/assets/svg/trash.svg">
-  </button>
-</div>
-${projectViewModalTmpl}
-`;
 export class ProjectCard {
   constructor(project) {
     this.project = project;
