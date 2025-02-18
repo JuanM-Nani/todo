@@ -1,3 +1,22 @@
+.sort-option__group {
+  display: flex;
+  justify-content: space-between;
+}
+.label--sorter {
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+.task-sorting__group--select-option {
+  display: flex;
+  gap: 1rem;
+}
+
+.task-sorting__group--delete {
+  display: flex;
+  gap: 1rem;
+}
 .task-search-bar {
-  color: red;
+  color: var(--semi-light);
+  width: 50%;
 }

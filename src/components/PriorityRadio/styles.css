@@ -20,9 +20,9 @@
   cursor: pointer;
   background-color: var(--dark);
   padding: 0.375em 0.75em;
-  color: var(--light);
+  color: var(--semi-light);
   box-shadow: 0 0 0 0.0625em #434343;
-  font-size: var(--medium-fs);
+  font-size: var(--small-fs);
   transition: background-color 0.1s ease;
   user-select: none;
   -moz-user-select: none;

@@ -18,9 +18,7 @@ export class ProjectFormHandler {
 
   getValues() {
     const emoji = this.emojiPicker.selection;
-    const name = this.form
-      .querySelector('.project-form__name')
-      .value.trim();
+    const name = this.form.querySelector('.project-form__name').value.trim();
     const description = this.form
       .querySelector('.project-form__description')
       .value.trim();

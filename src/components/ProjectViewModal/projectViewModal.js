@@ -26,7 +26,8 @@ export class ProjectViewModal {
     const projectForm = this.card.querySelector('.project-form');
     const submitProject = this.card.querySelector('.project-form__submit');
     submitProject.classList.add('project-view__close');
-    submitProject.innerHTML = `<img src="./src/assets/svg/trash.svg" alt="">`;
+    submitProject.title = 'Close project view and save';
+    submitProject.innerHTML = `<img class="project-view__image--close" src="" alt="" />`;
 
     this.projectFormHandler = new ProjectFormHandler(projectForm);
     this.projectFormHandler.init();
@@ -36,8 +37,6 @@ export class ProjectViewModal {
 
     const projectName = projectForm.querySelector('.project-form__name');
     const projectDescription = projectForm.querySelector('.project-form__description');
-
-    // removeLabels([emojiPickerInstance.]);
 
     emojiPickerInstance.selection = this.project.emoji;
     projectName.value = this.project.name;

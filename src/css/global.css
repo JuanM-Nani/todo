@@ -29,12 +29,30 @@ body {
   height: 100dvh;
   padding: 4rem;
 }
+.task-container {
+  padding: 2rem 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px 1fr));
+  /* grid-template-rows: ; */
+}
 button {
   background-color: transparent;
   cursor: pointer;
   padding: 0.4rem 1rem;
   border-radius: 6px;
-  font-size: 30px;
+  font-family: 'bold';
+  color: var(--light);
+  border: 2px solid var(--semi-light);
+  font-size: var(--small-fs) !important;
+  transition: 100ms;
+
+  &:hover:not(.nav-list__button) {
+    opacity: 90%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.295), 0 0 20px rgba(255, 255, 255, 0.363);
+
+    /* box-shadow: 0 0 2px var(--light); */
+  }
 }
 label {
   color: var(--light);
@@ -47,7 +65,6 @@ input,
 textarea,
 select {
   background: var(--dark);
-  /* box-shadow: var(--field__shadow--first), var(--field__shadow--second); */
   caret-color: var(--semi-light);
   color: var(--semi-light);
   border: var(--dark-border);
@@ -99,6 +116,9 @@ option {
 }
 summary {
   cursor: pointer;
+  font-family: 'regular';
+  font-size: var(--medium-fs);
+  color: var(--light);
   padding: 0.4rem;
 }
 img {
@@ -112,5 +132,32 @@ img {
   color: var(--light);
   font-family: 'bold';
   font-size: var(--giant-fs);
+  padding-bottom: 2rem;
   text-shadow: 3px 3px 2px rgb(3, 3, 3);
+  animation: 200ms pop-up ease-out;
+}
+dialog {
+  animation: 200ms pop-up ease-out;
+}
+@keyframes pop-up {
+  from {
+    scale: 0;
+  }
+  to {
+    scale: 1;
+  }
+}
+#delete {
+  animation: 200ms deleteAnimation ease-in-out;
+}
+@keyframes deleteAnimation {
+  0% {
+    scale: 1;
+  }
+  30% {
+    scale: 0.975;
+  }
+  100% {
+    scale: 0.4;
+  }
 }

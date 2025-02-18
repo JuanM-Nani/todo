@@ -2,7 +2,7 @@
   --primary: #ee7a0e;
   --dark: #212121;
   --light: #f9f9f9;
-  --semi-light: #f7e6d7;
+  --semi-light: #ccc;
 
   --placeholder: #a0a0a0;
   --dark-border: 2px solid #525252b4;
@@ -17,8 +17,7 @@
     linear-gradient(180deg, #4f11acbe, #751f0a9c); */
 
   --small-fs: clamp(1rem, 0.6vw + 1rem, 1.8rem);
-  --medium-fs: clamp(1.4rem, 1.2vw + 1rem, 2.4rem);
+  --medium-fs: clamp(1.4rem, 1vw + 1rem, 2.4rem);
   --large-fs: clamp(1.8rem, 1.6vw + 1rem, 2.8rem);
   --giant-fs: clamp(4rem, 5.5vw + 1rem, 5rem);
-
 }

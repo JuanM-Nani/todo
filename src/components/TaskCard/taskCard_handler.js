@@ -46,16 +46,19 @@ const taskCardOptions = [
       TaskStorage.removeTask(task.taskID);
 
       const taskContainer = card.closest('.task-container');
-      card.remove();
+      card.id = 'delete';
+      card.addEventListener('animationend', () => {
+        card.remove();
 
-      if (!taskContainer.hasChildNodes()) {
-        taskContainer.innerHTML = nothingFoundedTmpl;
-      }
+        if (!taskContainer.hasChildNodes()) {
+          taskContainer.innerHTML = nothingFoundedTmpl;
+        }
 
-      if (task.forProject) {
-        const project = ProjectStorage.getProjectByID(task.forProject);
-        project.removeTask(task.taskID);
-      }
+        if (task.forProject) {
+          const project = ProjectStorage.getProjectByID(task.forProject);
+          project.removeTask(task.taskID);
+        }
+      });
     },
   },
 ];

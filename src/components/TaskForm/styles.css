@@ -1,3 +1,16 @@
-.task-form__no-due-date:checked .flatpickr-input {
-  border: 20px solid red;
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.task-form__group--text,
+.task-form__group--due-date {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.task-form__input:disabled {
+  opacity: 90%;
+  text-decoration: line-through;
+  cursor: not-allowed;
 }

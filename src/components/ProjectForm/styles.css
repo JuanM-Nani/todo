@@ -2,3 +2,7 @@
 }
 .project-container {
 }
+/* label[for='emoji-picker'] {
+  display: flex;
+  flex-direction: column;
+} */

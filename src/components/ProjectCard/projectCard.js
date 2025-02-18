@@ -18,10 +18,10 @@ const projectCardTmpl = `
   <img class="project-card__image" src="/src/assets/svg/task.svg">
 </div>
 <div class="project-card__group--options">
-  <button class="project-card__option--open">
+  <button class="project-card__option--open" title="View">
     <img class="project-card__image" src="/src/assets/svg/edit.svg">
   </button>
-  <button class="project-card__option--delete">
+  <button class="project-card__option--delete" title="Delete">
     <img class="project-card__image" src="/src/assets/svg/trash.svg">
   </button>
 </div>
@@ -78,29 +78,32 @@ export class ProjectCard {
 
     const deleteProject = this.card.querySelector('.project-card__option--delete');
     deleteProject.addEventListener('click', () => {
-      this.card.remove();
+      this.card.id = 'delete';
+      this.card.addEventListener('animationend', () => {
+        this.card.remove();
 
-      this.project.taskStorage.forEach(taskID => {
-        TaskStorage.removeTask(taskID);
+        this.project.taskStorage.forEach(taskID => {
+          TaskStorage.removeTask(taskID);
+        });
+        ProjectStorage.removeProject(this.project.projectID);
+
+        const projectContainer = document.querySelector('.project-container');
+
+        const emojiPicker = this.modal?.projectFormHandler.emojiPicker;
+        if (emojiPicker) {
+          emojiPicker.emojiButtonInstance.pickerEl.remove();
+          emojiPicker.emojiButtonInstance.pickerContent.remove();
+          emojiPicker.emojiButtonInstance.wrapper.remove();
+          emojiPicker.emojiButtonInstance.off();
+        }
+
+        const datePicker = this.modal?.taskFormHandler.datePicker.flatpickrInstance;
+        if (datePicker) datePicker.destroy();
+
+        if (!projectContainer.children.length) {
+          projectContainer.innerHTML = nothingFoundedTmpl;
+        }
       });
-      ProjectStorage.removeProject(this.project.projectID);
-
-      const projectContainer = document.querySelector('.project-container');
-
-      const emojiPicker = this.modal?.projectFormHandler.emojiPicker;
-      if (emojiPicker) {
-        emojiPicker.emojiButtonInstance.pickerEl.remove();
-        emojiPicker.emojiButtonInstance.pickerContent.remove();
-        emojiPicker.emojiButtonInstance.wrapper.remove();
-        emojiPicker.emojiButtonInstance.off();
-      }
-
-      const datePicker = this.modal?.taskFormHandler.datePicker.flatpickrInstance;
-      if (datePicker) datePicker.destroy();
-
-      if (!projectContainer.children.length) {
-        projectContainer.innerHTML = nothingFoundedTmpl;
-      }
     });
   }
 }

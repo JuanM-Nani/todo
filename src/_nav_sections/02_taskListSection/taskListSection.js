@@ -1,3 +1,4 @@
+import './styles.css'
 import { TaskCard } from '../../components/TaskCard/TaskCard.js';
 import { TaskCardHandler } from '../../components/TaskCard/taskCard_handler.js';
 import { TaskStorage } from '../../logic/TaskStorage.js';

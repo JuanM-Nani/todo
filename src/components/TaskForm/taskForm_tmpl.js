@@ -17,6 +17,7 @@ export const taskFormTmpl = `
         placeholder="Go to gym"
         maxlength="20"
         minlength="6"
+        spellcheck="false"
         required
       />
     </label>
@@ -29,6 +30,7 @@ export const taskFormTmpl = `
         placeholder="Chest day, follow the routine."
         minlength="10"
         maxlength="120"
+        spellcheck="false"
       ></textarea>
     </label>
   </div>

@@ -1,0 +1,6 @@
+.emoji-picker,
+.emoji-picker * {
+}
+.emoji-picker__container {
+  overflow-x: hidden;
+}

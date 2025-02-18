@@ -1,24 +1,100 @@
 .task-card {
   border: 2px solid;
-  padding: 40px;
+  padding: 2rem;
   position: relative;
 }
 .task-card {
-  background-color: rgb(143, 131, 153);
-}
-.task-card button {
-  padding: 4px 10px;
-  background-color: rgb(69, 114, 156);
+  backdrop-filter: blur(4px) saturate(0%);
+  -webkit-backdrop-filter: blur(4px) saturate(0%);
+  border-radius: 6px;
+  transition: 200ms ease-in;
+  display: flex;
 }
 .task-card--completed {
-  background-color: rgb(116, 204, 34);
-  text-decoration: line-through; /* Tacha el texto */
+  background-color: transparent !important;
+  border: var(--dark-border) !important;
+  color: var(--placeholder) !important;
+  text-decoration: line-through;
+  text-decoration-color: var(--placeholder);
+  text-decoration-thickness: 2px;
+  transition: 200ms ease-in;
 }
 .task-card--expired {
-  background-color: red;
+  transition: 200ms ease-in;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent !important;
+  border: var(--dark-border) !important;
+  color: var(--placeholder) !important;
+}
+.task-card--expired::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(12.5deg);
+  background-image: url(/src/assets/img/expired.png);
+  z-index: -1;
+
+  width: 105%;
+  height: 40%;
+  opacity: 30%;
+}
+.task-card--expired::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-12.5deg);
+  background-image: url(/src/assets/img/expired.png);
+  z-index: -1;
+
+  width: 105%;
+  height: 40%;
+  opacity: 30%;
+}
+.task-card--expired .task-card__due-date {
+  text-decoration: line-through;
+  text-decoration-color: var(--placeholder);
+  text-decoration-thickness: 2px;
 }
 .task-card img {
   width: 20px;
   aspect-ratio: 1;
   pointer-events: none;
+}
+.task-card__title {
+  color: var(--light);
+  font-size: var(--large-fs);
+  font-family: 'italic';
+}
+.task-card__description,
+.task-card__due-date {
+  color: var(--semi-light);
+  font-size: var(--medium-fs);
+  font-family: 'regular';
+  max-width: 30ch;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-wrap: nowrap;
+}
+.task-card__group--options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  margin-left: auto;
+}
+.task-card__group--options button:disabled {
+  opacity: 30%;
+  cursor: not-allowed;
+
+  &:hover {
+    opacity: 30%;
+    box-shadow: none;
+  }
+}
+.task-card__meta-data {
+  font-size: var(--small-fs);
+  color: var(--semi-light);
 }

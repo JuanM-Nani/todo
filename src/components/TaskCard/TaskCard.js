@@ -7,8 +7,11 @@ import { isExpired } from '../../utils/isExpired.js';
 
 const priorityColors = {
   1: 'lime',
-  2: '#ffa100',
+  bg1: '#00ff0023',
+  2: 'yellow',
+  bg2: '#ffee0041',
   3: 'red',
+  bg3: '#ff000041'
 };
 
 export class TaskCard {
@@ -35,7 +38,13 @@ export class TaskCard {
   }
 
   initContent() {
-    this.$TaskCard.style.borderColor = priorityColors[this.task.priority];
+    const modal = this.$TaskCard.querySelector('.edit-task');
+    const taskBorderColor = priorityColors[this.task.priority];
+    const taskBackGroundColor = priorityColors[`bg${this.task.priority}`];
+
+    this.$TaskCard.style.borderColor = taskBorderColor;
+    this.$TaskCard.style.backgroundColor = taskBackGroundColor;
+    modal.style.borderColor = taskBorderColor;
 
     const $Title = this.$TaskCard.querySelector('.task-card__title');
     const $Description = this.$TaskCard.querySelector('.task-card__description');

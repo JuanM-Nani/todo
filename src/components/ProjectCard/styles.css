@@ -18,7 +18,7 @@
 .project-card__description {
   font-size: var(--small-fs);
   color: var(--semi-light);
-  max-width: 24ch;
+  max-width: 40ch;
   text-overflow: ellipsis;
   text-wrap: nowrap;
   overflow: hidden;

@@ -11,13 +11,13 @@ export const TaskCardTmpl = `
     <span class="task-card__meta-data task-card__subtask"></span>
   </div>
   <aside class="task-card__group--options">
-    <button class="task-card__option--mark-complete">
+    <button class="task-card__option--mark-complete" title="Change status">
       <img src="./src/assets/svg/mark_complete.svg" alt="mark-complete" />
     </button>
-    <button class="task-card__option--edit">
+    <button class="task-card__option--edit" title="Edit task">
       <img src="./src/assets/svg/edit.svg" alt="edit" />
     </button>
-    <button class="task-card__option--delete">
+    <button class="task-card__option--delete" title="Delete task">
       <img src="./src/assets/svg/trash.svg" alt="delete" />
     </button>
   </aside>

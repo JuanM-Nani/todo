@@ -47,7 +47,7 @@ window.addEventListener('beforeunload', () => {
 
 // SECTION first loading
 const $Body = document.querySelector('body');
-$Body.innerHTML += sidebarTemplate;
+$Body.innerHTML = sidebarTemplate;
 const main = document.createElement('main');
 main.id = 'content';
 $Body.appendChild(main);

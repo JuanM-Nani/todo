@@ -22,7 +22,7 @@ class TaskFormHandler {
 
     setTimeout(() => {
       projectSelect.init();
-    }, 500);
+    }, 0);
   }
 
   getValues(project) {
@@ -48,6 +48,12 @@ class TaskFormHandler {
 
   addListeners(projectTaskContainer, project) {
     const $SubmitBtn = this.form.querySelector('.task-form__submit');
+    const $NoDueDate = this.form.querySelector('#no-due-date');
+    const $DatePicker = this.form.querySelector('#due-date');
+
+    $NoDueDate.addEventListener('change', () => {
+      $DatePicker.disabled = !$DatePicker.disabled;
+    });
 
     $SubmitBtn.addEventListener('click', event => {
       const validity = this.form.checkValidity();
@@ -59,6 +65,7 @@ class TaskFormHandler {
         const task = createTask(values);
         this.form.reset();
         this.datePicker.setMinDate(new Date());
+        $DatePicker.disabled = false;
 
         if (projectTaskContainer) {
           const nothingFound = projectTaskContainer.querySelector('.nothing-founded');
