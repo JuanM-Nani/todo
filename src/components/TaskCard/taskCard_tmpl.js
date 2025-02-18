@@ -1,8 +1,8 @@
 import './styles.css';
 import { taskEditModalTmpl } from '../TaskEditModal/taskEditModal.js';
-import { markCompleteSvg } from '../../assets/svg/mark_complete.svg';
-import { editSvg } from '../../assets/svg/edit.svg';
-import { trashSvg } from '../../assets/svg/trash.svg';
+import markCompleteSvg from '../../assets/svg/mark_complete.svg';
+import editSvg from '../../assets/svg/edit.svg';
+import trashSvg from '../../assets/svg/trash.svg';
 
 export const TaskCardTmpl = `
   <div class="task-card__group--content">

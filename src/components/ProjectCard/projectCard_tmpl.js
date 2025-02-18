@@ -1,7 +1,7 @@
 import './styles.css';
-import { taskSvg } from '../../assets/svg/task.svg';
-import { editSvg } from '../../assets/svg/edit.svg';
-import { trashSvg } from '../../assets/svg/trash.svg';
+import taskSvg from '../../assets/svg/task.svg';
+import editSvg from '../../assets/svg/edit.svg';
+import trashSvg from '../../assets/svg/trash.svg';
 
 import { projectViewModalTmpl } from '../ProjectViewModal/projectViewModal_tmpl.js';
 
