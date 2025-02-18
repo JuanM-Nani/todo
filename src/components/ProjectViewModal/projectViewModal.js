@@ -30,7 +30,8 @@ export class ProjectViewModal {
     submitProject.innerHTML = `<img class="project-view__image--close" src="" alt="" />`;
 
     this.projectFormHandler = new ProjectFormHandler(projectForm);
-    this.projectFormHandler.init();
+    this.projectFormHandler.init(this.project.emoji);
+    console.log(this.project.emoji)
 
     const emojiPickerInstance = this.projectFormHandler.emojiPicker;
     this.projectFormHandler.addListeners(true, emojiPickerInstance);

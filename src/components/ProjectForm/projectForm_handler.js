@@ -9,9 +9,12 @@ export class ProjectFormHandler {
     this.emojiPicker = null;
   }
 
-  init() {
+  init(projectEmoji) {
     const triggerButton = this.form.querySelector('#emoji-picker');
     this.emojiPicker = new EmojiPicker(triggerButton);
+    if (projectEmoji) {
+      this.emojiPicker.triggerButton.innerHTML = projectEmoji;
+    }
     this.emojiPicker.init();
     this.emojiPicker.addListeners();
   }
