@@ -1,1 +1,1 @@
-> [!important]
+> [!IMPORTANT]
